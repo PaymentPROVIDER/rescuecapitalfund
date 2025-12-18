@@ -765,17 +765,11 @@
         }
 
         [data-lang].active {
-            display: block;
-        }
-
-        .nav-links [data-lang],
-        .lang-switcher [data-lang] {
             display: inline;
         }
 
-        .cta-group [data-lang].active,
-        .contact-info [data-lang].active {
-            display: flex;
+        .cta-group [data-lang].active {
+            display: inline;
         }
 
         .contact-info [data-lang].active {
@@ -783,13 +777,23 @@
         }
 
         .process-step [data-lang].active {
-            display: block;
+            display: inline;
         }
 
-        @media (max-width: 1024px) {
-            .process-step [data-lang].active {
-                display: block;
-            }
+        .hero-description [data-lang].active,
+        .partnership-text [data-lang].active,
+        .service-card p [data-lang].active,
+        .about-content p [data-lang].active {
+            display: inline;
+        }
+
+        .section-header [data-lang].active,
+        .section-title [data-lang].active {
+            display: inline;
+        }
+
+        .hero h1 [data-lang].active {
+            display: inline;
         }
     </style>
 </head>
@@ -1160,7 +1164,7 @@
                 <span data-lang="de">Vertrauliche Beratungen verfügbar. Nehmen Sie Kontakt auf, um das Gespräch zu beginnen.</span>
                 <span data-lang="es">Consultas confidenciales disponibles. Contáctenos para iniciar la conversación.</span>
             </p>
-            <a href="mailto:contact@rescuecapitalfund.com" class="contact-email">contact@rescuecapitalfund.com</a>
+            <a href="/cdn-cgi/l/email-protection#6f0c00011b0e0c1b2f1d0a1c0c1a0a0c0e1f061b0e03091a010b410c0002" class="contact-email"><span class="__cf_email__" data-cfemail="c3a0acadb7a2a0b783b1a6b0a0b6a6a0a2b3aab7a2afa5b6ada7eda0acae">[email&#160;protected]</span></a>
             <a href="#contact" class="btn btn-primary">
                 <span data-lang="en" class="active">Schedule a Call</span>
                 <span data-lang="pl">Umów Rozmowę</span>
@@ -1228,7 +1232,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Language Switcher
         const langBtns = document.querySelectorAll('.lang-btn');
         const langElements = document.querySelectorAll('[data-lang]');
@@ -1297,12 +1301,4 @@
         }, observerOptions);
 
         // Animate elements on scroll
-        document.querySelectorAll('.service-card, .stat, .process-step').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+        document.querySelectorAll('.service-ca
