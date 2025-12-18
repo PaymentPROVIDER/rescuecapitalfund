@@ -672,6 +672,79 @@
             transition: var(--transition);
         }
 
+        /* Mobile Language Switcher */
+        .mobile-lang-switcher {
+            display: none;
+            gap: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .mobile-lang-switcher .lang-btn {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 12, 16, 0.98);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: var(--font-display);
+            transition: var(--transition);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--color-accent);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--color-accent);
+        }
+
+        .mobile-menu .lang-switcher {
+            margin-left: 0;
+            padding-left: 0;
+            border-left: none;
+            margin-top: 1rem;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             nav {
@@ -683,6 +756,10 @@
             }
 
             .mobile-menu-btn {
+                display: flex;
+            }
+
+            .mobile-lang-switcher {
                 display: flex;
             }
 
@@ -839,12 +916,59 @@
                 <button class="lang-btn" data-lang-btn="es">ES</button>
             </div>
         </div>
+        <div class="mobile-lang-switcher">
+            <button class="lang-btn active" data-lang-btn="en">EN</button>
+            <button class="lang-btn" data-lang-btn="pl">PL</button>
+            <button class="lang-btn" data-lang-btn="de">DE</button>
+            <button class="lang-btn" data-lang-btn="es">ES</button>
+        </div>
         <button class="mobile-menu-btn" aria-label="Menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+        <a href="#services" class="mobile-menu-link">
+            <span data-lang="en" class="active">Services</span>
+            <span data-lang="pl">Usługi</span>
+            <span data-lang="de">Leistungen</span>
+            <span data-lang="es">Servicios</span>
+        </a>
+        <a href="#about" class="mobile-menu-link">
+            <span data-lang="en" class="active">About</span>
+            <span data-lang="pl">O nas</span>
+            <span data-lang="de">Über uns</span>
+            <span data-lang="es">Nosotros</span>
+        </a>
+        <a href="#process" class="mobile-menu-link">
+            <span data-lang="en" class="active">Process</span>
+            <span data-lang="pl">Proces</span>
+            <span data-lang="de">Prozess</span>
+            <span data-lang="es">Proceso</span>
+        </a>
+        <a href="#partnership" class="mobile-menu-link">
+            <span data-lang="en" class="active">Partnership</span>
+            <span data-lang="pl">Partnerstwo</span>
+            <span data-lang="de">Partnerschaft</span>
+            <span data-lang="es">Asociación</span>
+        </a>
+        <a href="#contact" class="mobile-menu-link">
+            <span data-lang="en" class="active">Contact</span>
+            <span data-lang="pl">Kontakt</span>
+            <span data-lang="de">Kontakt</span>
+            <span data-lang="es">Contacto</span>
+        </a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang-btn="en">EN</button>
+            <button class="lang-btn" data-lang-btn="pl">PL</button>
+            <button class="lang-btn" data-lang-btn="de">DE</button>
+            <button class="lang-btn" data-lang-btn="es">ES</button>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1164,8 +1288,8 @@
                 <span data-lang="de">Vertrauliche Beratungen verfügbar. Nehmen Sie Kontakt auf, um das Gespräch zu beginnen.</span>
                 <span data-lang="es">Consultas confidenciales disponibles. Contáctenos para iniciar la conversación.</span>
             </p>
-            <a href="/cdn-cgi/l/email-protection#6f0c00011b0e0c1b2f1d0a1c0c1a0a0c0e1f061b0e03091a010b410c0002" class="contact-email"><span class="__cf_email__" data-cfemail="c3a0acadb7a2a0b783b1a6b0a0b6a6a0a2b3aab7a2afa5b6ada7eda0acae">[email&#160;protected]</span></a>
-            <a href="#contact" class="btn btn-primary">
+            <a href="mailto:contact@rescuecapitalfund.com" class="contact-email">contact@rescuecapitalfund.com</a>
+            <a href="mailto:contact@rescuecapitalfund.com?subject=Schedule%20a%20Call" class="btn btn-primary">
                 <span data-lang="en" class="active">Schedule a Call</span>
                 <span data-lang="pl">Umów Rozmowę</span>
                 <span data-lang="de">Gespräch Vereinbaren</span>
@@ -1205,6 +1329,15 @@
                 </h5>
                 <p>EN / PL / DE / ES</p>
             </div>
+            <div class="contact-item">
+                <h5>
+                    <span data-lang="en" class="active">Email</span>
+                    <span data-lang="pl">Email</span>
+                    <span data-lang="de">E-Mail</span>
+                    <span data-lang="es">Correo</span>
+                </h5>
+                <p><a href="mailto:contact@rescuecapitalfund.com" style="color: var(--color-accent); text-decoration: none;">contact@rescuecapitalfund.com</a></p>
+            </div>
         </div>
     </section>
 
@@ -1238,7 +1371,7 @@
         const langElements = document.querySelectorAll('[data-lang]');
 
         function setLanguage(lang) {
-            // Update buttons
+            // Update all language buttons (desktop, mobile bar, and mobile menu)
             langBtns.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.langBtn === lang);
             });
@@ -1259,9 +1392,40 @@
         const savedLang = localStorage.getItem('rcf-lang') || 'en';
         setLanguage(savedLang);
 
-        // Add click handlers
+        // Add click handlers for all language buttons
         langBtns.forEach(btn => {
             btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn));
+        });
+
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                closeMobileMenu();
+            }
         });
 
         // Smooth scroll for navigation links
@@ -1301,4 +1465,12 @@
         }, observerOptions);
 
         // Animate elements on scroll
-        document.querySelectorAll('.service-ca
+        document.querySelectorAll('.service-card, .process-step, .stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
