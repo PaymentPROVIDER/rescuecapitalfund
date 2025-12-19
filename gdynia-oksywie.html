@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gdynia Oksywie | Rescue Capital Fund</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --navy: #0a0c10; --deep-blue: #12151c; --gold: #c9a962; --gold-light: #dfc078; --white: #e8e6e3; --gray: #9ca3af; --border: rgba(201, 169, 98, 0.2); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: var(--navy); color: var(--white); line-height: 1.7; }
+        [data-lang] { display: none; }
+        [data-lang].active { display: inline; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 12, 16, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--gold); text-decoration: none; }
+        .logo span { color: var(--white); font-weight: 400; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .lang-switcher { display: flex; gap: 0.5rem; margin-left: 1rem; padding-left: 1rem; border-left: 1px solid var(--border); }
+        .lang-btn { background: transparent; border: 1px solid var(--border); color: var(--gray); padding: 0.4rem 0.8rem; font-size: 0.75rem; font-family: 'Outfit', sans-serif; cursor: pointer; transition: all 0.3s; }
+        .lang-btn:hover, .lang-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gray); text-decoration: none; font-size: 0.85rem; margin-bottom: 2rem; transition: all 0.3s; }
+        .back-link:hover { color: var(--gold); }
+        .hero { padding: 10rem 4rem 4rem; }
+        .hero-inner { max-width: 1200px; margin: 0 auto; }
+        .badge { display: inline-block; background: var(--gold); color: var(--navy); padding: 0.4rem 1rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+        .hero h1 em { font-style: italic; color: var(--gold); }
+        .location { color: var(--gold); font-size: 1rem; margin-bottom: 2rem; }
+        .stats-row { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .stat { text-align: center; }
+        .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold); }
+        .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; }
+        .section { padding: 4rem; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 2rem; }
+        .section-title em { font-style: italic; color: var(--gold); }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--deep-blue); border: 1px solid var(--border); padding: 2rem; }
+        .card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 1rem; }
+        .card p { color: var(--gray); font-size: 0.95rem; }
+        .budget-section { background: var(--deep-blue); }
+        .budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .budget-card { background: var(--navy); border: 1px solid var(--border); padding: 1.5rem; text-align: center; }
+        .budget-card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); }
+        .budget-card-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.5rem; }
+        .budget-table { background: var(--navy); border: 1px solid var(--border); overflow: hidden; }
+        .budget-table-header { background: var(--gold); color: var(--navy); padding: 1rem; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em; }
+        .budget-table-row { display: flex; justify-content: space-between; padding: 1rem; border-bottom: 1px solid var(--border); }
+        .budget-table-row:last-child { border-bottom: none; }
+        .budget-table-row.total { background: rgba(201, 169, 98, 0.1); font-weight: 600; }
+        .returns-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+        .return-card { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); padding: 1.5rem; text-align: center; color: var(--navy); }
+        .return-card-value { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; }
+        .return-card-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .cta-section { text-align: center; padding: 4rem; }
+        .cta-btn { display: inline-block; background: var(--gold); color: var(--navy); padding: 1rem 2.5rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+        .cta-btn:hover { background: var(--gold-light); }
+        footer { padding: 3rem 4rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.85rem; color: var(--gray); }
+        @media (max-width: 768px) { nav { padding: 1rem 2rem; } .nav-links { display: none; } .hero, .section, .cta-section { padding: 4rem 2rem; } .stats-row { gap: 2rem; } .returns-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Rescue<span>Capital</span>Fund</a>
+        <div class="nav-links">
+            <a href="index.html#services"><span data-lang="en" class="active">Services</span><span data-lang="pl">Usługi</span><span data-lang="de">Leistungen</span><span data-lang="es">Servicios</span></a>
+            <a href="index.html#about"><span data-lang="en" class="active">About</span><span data-lang="pl">O nas</span><span data-lang="de">Über uns</span><span data-lang="es">Nosotros</span></a>
+            <a href="projects.html"><span data-lang="en" class="active">Projects</span><span data-lang="pl">Projekty</span><span data-lang="de">Projekte</span><span data-lang="es">Proyectos</span></a>
+            <a href="index.html#contact"><span data-lang="en" class="active">Contact</span><span data-lang="pl">Kontakt</span><span data-lang="de">Kontakt</span><span data-lang="es">Contacto</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang-btn="en">EN</button>
+                <button class="lang-btn" data-lang-btn="pl">PL</button>
+                <button class="lang-btn" data-lang-btn="de">DE</button>
+                <button class="lang-btn" data-lang-btn="es">ES</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <a href="projects.html" class="back-link">← <span data-lang="en" class="active">Back to Projects</span><span data-lang="pl">Powrót do Projektów</span><span data-lang="de">Zurück zu Projekten</span><span data-lang="es">Volver a Proyectos</span></a>
+            <span class="badge"><span data-lang="en" class="active">Real Estate</span><span data-lang="pl">Nieruchomości</span><span data-lang="de">Immobilien</span><span data-lang="es">Bienes Raíces</span></span>
+            <h1><span data-lang="en" class="active">Gdynia <em>Oksywie</em></span><span data-lang="pl">Gdynia <em>Oksywie</em></span><span data-lang="de">Gdynia <em>Oksywie</em></span><span data-lang="es">Gdynia <em>Oksywie</em></span></h1>
+            <p class="location">Poland, Pomerania</p>
+            <div class="stats-row">
+                <div class="stat"><div class="stat-value">3.13</div><div class="stat-label"><span data-lang="en" class="active">Hectares</span><span data-lang="pl">Hektarów</span><span data-lang="de">Hektar</span><span data-lang="es">Hectáreas</span></div></div>
+                <div class="stat"><div class="stat-value">36,610</div><div class="stat-label"><span data-lang="en" class="active">Buildable m²</span><span data-lang="pl">m² do zabudowy</span><span data-lang="de">Bebaubar m²</span><span data-lang="es">m² Construibles</span></div></div>
+                <div class="stat"><div class="stat-value">400</div><div class="stat-label"><span data-lang="en" class="active">Apartments</span><span data-lang="pl">Mieszkań</span><span data-lang="de">Wohnungen</span><span data-lang="es">Apartamentos</span></div></div>
+                <div class="stat"><div class="stat-value">513</div><div class="stat-label"><span data-lang="en" class="active">Parking</span><span data-lang="pl">Parkingów</span><span data-lang="de">Parkplätze</span><span data-lang="es">Estacionamientos</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-inner">
+            <h2 class="section-title"><span data-lang="en" class="active">Project <em>Overview</em></span><span data-lang="pl">Opis <em>Projektu</em></span><span data-lang="de">Projekt <em>Übersicht</em></span><span data-lang="es">Descripción del <em>Proyecto</em></span></h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3><span data-lang="en" class="active">Prime Location</span><span data-lang="pl">Doskonała Lokalizacja</span><span data-lang="de">Beste Lage</span><span data-lang="es">Ubicación Premium</span></h3>
+                    <p><span data-lang="en" class="active">31,326 m² of land enabling comprehensive residential development project realization with sea views.</span><span data-lang="pl">31.326 m² terenu umożliwiającego realizację kompleksowej inwestycji deweloperskiej z widokiem na morze.</span><span data-lang="de">31.326 m² Grundstück für umfassende Wohnbauprojekte mit Meerblick.</span><span data-lang="es">31.326 m² de terreno para desarrollo residencial integral con vistas al mar.</span></p>
+                </div>
+                <div class="card">
+                    <h3><span data-lang="en" class="active">Planning Status</span><span data-lang="pl">Status Planistyczny</span><span data-lang="de">Planungsstatus</span><span data-lang="es">Estado de Planificación</span></h3>
+                    <p><span data-lang="en" class="active">2 planning applications submitted for multifamily residential development – total 36,610 m² buildable area.</span><span data-lang="pl">Złożone 2 wnioski o warunki zabudowy dla zabudowy mieszkaniowej wielorodzinnej – łącznie 36.610 m².</span><span data-lang="de">2 Bauanträge eingereicht – insgesamt 36.610 m² bebaubare Fläche.</span><span data-lang="es">2 solicitudes de planificación presentadas – total 36.610 m² edificables.</span></p>
+                </div>
+                <div class="card">
+                    <h3><span data-lang="en" class="active">Infrastructure</span><span data-lang="pl">Infrastruktura</span><span data-lang="de">Infrastruktur</span><span data-lang="es">Infraestructura</span></h3>
+                    <p><span data-lang="en" class="active">Complete utility infrastructure available: water, sewage, electricity, gas connections ready.</span><span data-lang="pl">Dostępna pełna infrastruktura: woda, kanalizacja, prąd, przyłącze gazowe.</span><span data-lang="de">Komplette Versorgungsinfrastruktur verfügbar: Wasser, Abwasser, Strom, Gas.</span><span data-lang="es">Infraestructura completa disponible: agua, alcantarillado, electricidad, gas.</span></p>
+                </div>
+                <div class="card">
+                    <h3><span data-lang="en" class="active">Development Potential</span><span data-lang="pl">Potencjał Rozwojowy</span><span data-lang="de">Entwicklungspotenzial</span><span data-lang="es">Potencial de Desarrollo</span></h3>
+                    <p><span data-lang="en" class="active">400 residential units planned with 513 parking spaces across multiple phases.</span><span data-lang="pl">Planowanych 400 lokali mieszkalnych z 513 miejscami parkingowymi w wielu etapach.</span><span data-lang="de">400 Wohneinheiten mit 513 Parkplätzen in mehreren Phasen geplant.</span><span data-lang="es">400 unidades residenciales con 513 plazas de estacionamiento en múltiples fases.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section budget-section">
+        <div class="section-inner">
+            <h2 class="section-title"><span data-lang="en" class="active">Project <em>Budget</em></span><span data-lang="pl"><em>Budżet</em> Projektu</span><span data-lang="de">Projekt <em>Budget</em></span><span data-lang="es"><em>Presupuesto</em> del Proyecto</span></h2>
+            <div class="budget-grid">
+                <div class="budget-card">
+                    <div class="budget-card-value"><span data-lang="en" class="active">€56.6M</span><span data-lang="pl">243 mln PLN</span><span data-lang="de">€56.6M</span><span data-lang="es">€56.6M</span></div>
+                    <div class="budget-card-label"><span data-lang="en" class="active">Total Development Cost</span><span data-lang="pl">Całkowity Koszt</span><span data-lang="de">Gesamtkosten</span><span data-lang="es">Costo Total</span></div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-card-value"><span data-lang="en" class="active">€92.3M</span><span data-lang="pl">397 mln PLN</span><span data-lang="de">€92.3M</span><span data-lang="es">€92.3M</span></div>
+                    <div class="budget-card-label"><span data-lang="en" class="active">Projected Revenue</span><span data-lang="pl">Prognozowane Przychody</span><span data-lang="de">Prognostizierte Erlöse</span><span data-lang="es">Ingresos Proyectados</span></div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-card-value"><span data-lang="en" class="active">€3,355</span><span data-lang="pl">15 000 PLN</span><span data-lang="de">€3,355</span><span data-lang="es">€3,355</span></div>
+                    <div class="budget-card-label"><span data-lang="en" class="active">Price per m²</span><span data-lang="pl">Cena za m²</span><span data-lang="de">Preis pro m²</span><span data-lang="es">Precio por m²</span></div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-card-value">36</div>
+                    <div class="budget-card-label"><span data-lang="en" class="active">Months Construction</span><span data-lang="pl">Miesięcy Budowy</span><span data-lang="de">Monate Bauzeit</span><span data-lang="es">Meses Construcción</span></div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="budget-table">
+                    <div class="budget-table-header"><span data-lang="en" class="active">Cost Structure</span><span data-lang="pl">Struktura Kosztów</span><span data-lang="de">Kostenstruktur</span><span data-lang="es">Estructura de Costos</span></div>
+                    <div class="budget-table-row"><span><span data-lang="en" class="active">Land Acquisition</span><span data-lang="pl">Nabycie Gruntu</span><span data-lang="de">Grundstückserwerb</span><span data-lang="es">Adquisición Terreno</span></span><span><span data-lang="en" class="active">€22.4M</span><span data-lang="pl">96 mln PLN</span><span data-lang="de">€22.4M</span><span data-lang="es">€22.4M</span></span></div>
+                    <div class="budget-table-row"><span><span data-lang="en" class="active">Construction</span><span data-lang="pl">Budowa</span><span data-lang="de">Baukosten</span><span data-lang="es">Construcción</span></span><span><span data-lang="en" class="active">€31.7M</span><span data-lang="pl">136 mln PLN</span><span data-lang="de">€31.7M</span><span data-lang="es">€31.7M</span></span></div>
+                    <div class="budget-table-row"><span><span data-lang="en" class="active">Soft Costs</span><span data-lang="pl">Koszty Miękkie</span><span data-lang="de">Nebenkosten</span><span data-lang="es">Costos Blandos</span></span><span><span data-lang="en" class="active">€2.5M</span><span data-lang="pl">11 mln PLN</span><span data-lang="de">€2.5M</span><span data-lang="es">€2.5M</span></span></div>
+                    <div class="budget-table-row total"><span><span data-lang="en" class="active">Total</span><span data-lang="pl">Razem</span><span data-lang="de">Gesamt</span><span data-lang="es">Total</span></span><span><span data-lang="en" class="active">€56.6M</span><span data-lang="pl">243 mln PLN</span><span data-lang="de">€56.6M</span><span data-lang="es">€56.6M</span></span></div>
+                </div>
+                <div>
+                    <div class="returns-grid">
+                        <div class="return-card"><div class="return-card-value">400</div><div class="return-card-label"><span data-lang="en" class="active">Residential Units</span><span data-lang="pl">Jednostek Mieszkalnych</span><span data-lang="de">Wohneinheiten</span><span data-lang="es">Unidades Residenciales</span></div></div>
+                        <div class="return-card"><div class="return-card-value">513</div><div class="return-card-label"><span data-lang="en" class="active">Parking Spaces</span><span data-lang="pl">Miejsc Parkingowych</span><span data-lang="de">Parkplätze</span><span data-lang="es">Plazas Parking</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-inner">
+            <h2 class="section-title"><span data-lang="en" class="active">Legal <em>Status</em></span><span data-lang="pl">Status <em>Prawny</em></span><span data-lang="de">Rechtlicher <em>Status</em></span><span data-lang="es">Estado <em>Legal</em></span></h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3><span data-lang="en" class="active">Land Registry</span><span data-lang="pl">Księga Wieczysta</span><span data-lang="de">Grundbuch</span><span data-lang="es">Registro de Propiedad</span></h3>
+                    <p><span data-lang="en" class="active">Plot 1264/1: 19,833 m² | Plot 1264/3: 11,292 m² | Plot 1265: 201 m² | Total: 31,326 m²</span><span data-lang="pl">Działka 1264/1: 19.833 m² | Działka 1264/3: 11.292 m² | Działka 1265: 201 m² | Łącznie: 31.326 m²</span><span data-lang="de">Flurstück 1264/1: 19.833 m² | Flurstück 1264/3: 11.292 m² | Flurstück 1265: 201 m² | Gesamt: 31.326 m²</span><span data-lang="es">Parcela 1264/1: 19.833 m² | Parcela 1264/3: 11.292 m² | Parcela 1265: 201 m² | Total: 31.326 m²</span></p>
+                </div>
+                <div class="card">
+                    <h3><span data-lang="en" class="active">Ownership</span><span data-lang="pl">Własność</span><span data-lang="de">Eigentum</span><span data-lang="es">Propiedad</span></h3>
+                    <p><span data-lang="en" class="active">Freehold ownership with clear title. No encumbrances or legal disputes.</span><span data-lang="pl">Pełna własność z czystym tytułem prawnym. Brak obciążeń i sporów prawnych.</span><span data-lang="de">Volleigentum mit klarem Titel. Keine Belastungen oder Rechtsstreitigkeiten.</span><span data-lang="es">Propiedad libre con título claro. Sin gravámenes ni disputas legales.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 class="section-title"><span data-lang="en" class="active">Interested in this <em>opportunity</em>?</span><span data-lang="pl">Zainteresowany tą <em>okazją</em>?</span><span data-lang="de">An dieser <em>Gelegenheit</em> interessiert?</span><span data-lang="es">¿Interesado en esta <em>oportunidad</em>?</span></h2>
+        <p style="color: var(--gray); margin-bottom: 2rem;"><span data-lang="en" class="active">Contact us for detailed information and investment documentation.</span><span data-lang="pl">Skontaktuj się z nami po szczegółowe informacje i dokumentację inwestycyjną.</span><span data-lang="de">Kontaktieren Sie uns für detaillierte Informationen.</span><span data-lang="es">Contáctenos para información detallada.</span></p>
+        <a href="mailto:contact@rescuecapitalfund.com" class="cta-btn"><span data-lang="en" class="active">Schedule Meeting</span><span data-lang="pl">Umów Spotkanie</span><span data-lang="de">Termin Vereinbaren</span><span data-lang="es">Programar Reunión</span></a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Rescue Capital Fund. <span data-lang="en" class="active">All rights reserved.</span><span data-lang="pl">Wszelkie prawa zastrzeżone.</span><span data-lang="de">Alle Rechte vorbehalten.</span><span data-lang="es">Todos los derechos reservados.</span></p>
+    </footer>
+
+    <script>
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const langElements = document.querySelectorAll('[data-lang]');
+        function setLanguage(lang) {
+            langBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.langBtn === lang));
+            langElements.forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
+            document.documentElement.lang = lang;
+            localStorage.setItem('rcf-lang', lang);
+        }
+        const savedLang = localStorage.getItem('rcf-lang') || 'en';
+        setLanguage(savedLang);
+        langBtns.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn)));
+    </script>
+</body>
+</html>
