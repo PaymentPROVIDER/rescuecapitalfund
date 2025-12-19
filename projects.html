@@ -61,9 +61,43 @@
         footer { padding: 3rem 4rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.85rem; color: var(--gray); }
 
         @media (max-width: 768px) {
-            nav { padding: 1rem 2rem; flex-direction: column; gap: 1rem; }
-            .nav-links { flex-wrap: wrap; justify-content: center; }
+            nav { padding: 1rem 2rem; }
+            .nav-links { display: none; }
+            .nav-links.mobile-active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 12, 16, 0.98);
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.mobile-active .lang-switcher {
+                margin-left: 0;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border);
+            }
+            .mobile-menu-btn { display: flex; }
             .page-header, .projects-section { padding: 6rem 2rem 2rem; }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--gold);
+            transition: all 0.3s;
         }
     </style>
 </head>
@@ -102,6 +136,11 @@
                 <button class="lang-btn" data-lang-btn="es">ES</button>
             </div>
         </div>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
     <section class="page-header">
@@ -212,6 +251,23 @@
         setLanguage(savedLang);
         
         langBtns.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn)));
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('mobile-active');
+            });
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('mobile-active');
+            });
+        });
     </script>
 </body>
 </html>
