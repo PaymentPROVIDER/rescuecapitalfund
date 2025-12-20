@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gdynia Oksywie | Rescue Capital Fund</title>
+    <title>Gdynia - Oksywie Park Residence | Rescue Capital Fund</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root { --navy: #0a0c10; --deep-blue: #12151c; --gold: #c9a962; --gold-light: #dfc078; --white: #e8e6e3; --gray: #9ca3af; --border: rgba(201, 169, 98, 0.2); }
@@ -67,8 +67,16 @@
         .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(10,12,16,0.9)); padding: 2rem 1rem 1rem; }
         .gallery-caption span { color: var(--white); font-size: 0.9rem; }
         .masterplan-section { text-align: center; }
-        .masterplan-img { max-width: 100%; border: 1px solid var(--border); margin-top: 2rem; cursor: pointer; transition: all 0.3s; }
+        .masterplan-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; margin-top: 2rem; text-align: left; }
+        .masterplan-image-wrapper { display: flex; }
+        .masterplan-img { width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--border); cursor: pointer; transition: all 0.3s; }
         .masterplan-img:hover { border-color: var(--gold); }
+        .masterplan-info { background: var(--deep-blue); border: 1px solid var(--border); padding: 2rem; display: flex; flex-direction: column; }
+        .masterplan-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 1.5rem; }
+        .masterplan-info-list { list-style: none; padding: 0; margin: 0; }
+        .masterplan-info-list li { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border); color: var(--gray); font-size: 0.95rem; }
+        .masterplan-info-list li:last-child { border-bottom: none; }
+        .masterplan-info-list li span:last-child { color: var(--white); font-weight: 500; }
         .lightbox { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; }
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; }
@@ -110,6 +118,7 @@
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-item.featured { grid-column: span 1; }
             .gallery-item.featured img { height: 280px; }
+            .masterplan-container { grid-template-columns: 1fr; }
         }
         .mobile-menu-btn {
             display: none;
@@ -154,12 +163,12 @@
         <div class="hero-inner">
             <a href="projects.html" class="back-link">← <span data-lang="en" class="active">Back to Projects</span><span data-lang="pl">Powrót do Projektów</span><span data-lang="de">Zurück zu Projekten</span><span data-lang="es">Volver a Proyectos</span></a>
             <span class="badge"><span data-lang="en" class="active">Real Estate</span><span data-lang="pl">Nieruchomości</span><span data-lang="de">Immobilien</span><span data-lang="es">Bienes Raíces</span></span>
-            <h1><span data-lang="en" class="active">Gdynia <em>Oksywie</em></span><span data-lang="pl">Gdynia <em>Oksywie</em></span><span data-lang="de">Gdynia <em>Oksywie</em></span><span data-lang="es">Gdynia <em>Oksywie</em></span></h1>
+            <h1><span data-lang="en" class="active">Gdynia - <em>Oksywie Park Residence</em></span><span data-lang="pl">Gdynia - <em>Oksywie Park Residence</em></span><span data-lang="de">Gdynia - <em>Oksywie Park Residence</em></span><span data-lang="es">Gdynia - <em>Oksywie Park Residence</em></span></h1>
             <p class="location">Poland, Pomerania</p>
             <div class="stats-row">
                 <div class="stat"><div class="stat-value">3.13</div><div class="stat-label"><span data-lang="en" class="active">Hectares</span><span data-lang="pl">Hektarów</span><span data-lang="de">Hektar</span><span data-lang="es">Hectáreas</span></div></div>
                 <div class="stat"><div class="stat-value">36,610</div><div class="stat-label"><span data-lang="en" class="active">Buildable m²</span><span data-lang="pl">m² do zabudowy</span><span data-lang="de">Bebaubar m²</span><span data-lang="es">m² Construibles</span></div></div>
-                <div class="stat"><div class="stat-value">400</div><div class="stat-label"><span data-lang="en" class="active">Apartments</span><span data-lang="pl">Mieszkań</span><span data-lang="de">Wohnungen</span><span data-lang="es">Apartamentos</span></div></div>
+                <div class="stat"><div class="stat-value">428</div><div class="stat-label"><span data-lang="en" class="active">Apartments</span><span data-lang="pl">Mieszkań</span><span data-lang="de">Wohnungen</span><span data-lang="es">Apartamentos</span></div></div>
                 <div class="stat"><div class="stat-value">513</div><div class="stat-label"><span data-lang="en" class="active">Parking</span><span data-lang="pl">Parkingów</span><span data-lang="de">Parkplätze</span><span data-lang="es">Estacionamientos</span></div></div>
             </div>
         </div>
@@ -183,7 +192,7 @@
                 </div>
                 <div class="card">
                     <h3><span data-lang="en" class="active">Development Potential</span><span data-lang="pl">Potencjał Rozwojowy</span><span data-lang="de">Entwicklungspotenzial</span><span data-lang="es">Potencial de Desarrollo</span></h3>
-                    <p><span data-lang="en" class="active">400 residential units planned with 513 parking spaces across multiple phases.</span><span data-lang="pl">Planowanych 400 lokali mieszkalnych z 513 miejscami parkingowymi w wielu etapach.</span><span data-lang="de">400 Wohneinheiten mit 513 Parkplätzen in mehreren Phasen geplant.</span><span data-lang="es">400 unidades residenciales con 513 plazas de estacionamiento en múltiples fases.</span></p>
+                    <p><span data-lang="en" class="active">428 residential units planned with 513 parking spaces across multiple phases.</span><span data-lang="pl">Planowanych 428 lokali mieszkalnych z 513 miejscami parkingowymi w wielu etapach.</span><span data-lang="de">428 Wohneinheiten mit 513 Parkplätzen in mehreren Phasen geplant.</span><span data-lang="es">428 unidades residenciales con 513 plazas de estacionamiento en múltiples fases.</span></p>
                 </div>
             </div>
         </div>
@@ -220,7 +229,7 @@
                 </div>
                 <div>
                     <div class="returns-grid">
-                        <div class="return-card"><div class="return-card-value">400</div><div class="return-card-label"><span data-lang="en" class="active">Residential Units</span><span data-lang="pl">Jednostek Mieszkalnych</span><span data-lang="de">Wohneinheiten</span><span data-lang="es">Unidades Residenciales</span></div></div>
+                        <div class="return-card"><div class="return-card-value">428</div><div class="return-card-label"><span data-lang="en" class="active">Residential Units</span><span data-lang="pl">Jednostek Mieszkalnych</span><span data-lang="de">Wohneinheiten</span><span data-lang="es">Unidades Residenciales</span></div></div>
                         <div class="return-card"><div class="return-card-value">513</div><div class="return-card-label"><span data-lang="en" class="active">Parking Spaces</span><span data-lang="pl">Miejsc Parkingowych</span><span data-lang="de">Parkplätze</span><span data-lang="es">Plazas Parking</span></div></div>
                     </div>
                 </div>
@@ -256,7 +265,37 @@
         <div class="section-inner">
             <h2 class="section-title"><span data-lang="en" class="active">Master <em>Plan</em></span><span data-lang="pl">Plan <em>Zagospodarowania</em></span><span data-lang="de">Master<em>plan</em></span><span data-lang="es">Plan <em>Maestro</em></span></h2>
             <p style="color: var(--gray); margin-bottom: 1rem;"><span data-lang="en" class="active">14 residential buildings in two phases: Phase 1 (9 buildings) and Phase 2 (5 buildings)</span><span data-lang="pl">14 budynków mieszkalnych w dwóch etapach: Etap 1 (9 budynków) i Etap 2 (5 budynków)</span><span data-lang="de">14 Wohngebäude in zwei Phasen: Phase 1 (9 Gebäude) und Phase 2 (5 Gebäude)</span><span data-lang="es">14 edificios residenciales en dos fases: Fase 1 (9 edificios) y Fase 2 (5 edificios)</span></p>
-            <img src="plan-masterplan.jpg" alt="Masterplan" class="masterplan-img" onclick="openLightbox('plan-masterplan.jpg')">
+            <div class="masterplan-container">
+                <div class="masterplan-image-wrapper">
+                    <img src="plan-masterplan.jpg" alt="Masterplan" class="masterplan-img" onclick="openLightbox('plan-masterplan.jpg')">
+                </div>
+                <div class="masterplan-info">
+                    <h3>Oksywie Park Residence</h3>
+                    <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 0.9rem;"><span data-lang="en" class="active">Total Investment Parameters:</span><span data-lang="pl">Łączne parametry inwestycji:</span><span data-lang="de">Gesamte Investitionsparameter:</span><span data-lang="es">Parámetros totales de inversión:</span></p>
+                    <ul class="masterplan-info-list">
+                        <li>
+                            <span><span data-lang="en" class="active">Land Area</span><span data-lang="pl">Powierzchnia terenu</span><span data-lang="de">Grundstücksfläche</span><span data-lang="es">Superficie del terreno</span></span>
+                            <span>31 326 m²</span>
+                        </li>
+                        <li>
+                            <span><span data-lang="en" class="active">Building Footprint</span><span data-lang="pl">Powierzchnia zabudowy</span><span data-lang="de">Gebäudegrundfläche</span><span data-lang="es">Superficie de construcción</span></span>
+                            <span>10 669 m²</span>
+                        </li>
+                        <li>
+                            <span><span data-lang="en" class="active">Number of Buildings</span><span data-lang="pl">Liczba budynków</span><span data-lang="de">Anzahl der Gebäude</span><span data-lang="es">Número de edificios</span></span>
+                            <span>14</span>
+                        </li>
+                        <li>
+                            <span><span data-lang="en" class="active">Number of Apartments</span><span data-lang="pl">Liczba mieszkań</span><span data-lang="de">Anzahl der Wohnungen</span><span data-lang="es">Número de apartamentos</span></span>
+                            <span>428</span>
+                        </li>
+                        <li>
+                            <span><span data-lang="en" class="active">Parking Spaces</span><span data-lang="pl">Miejsca parkingowe</span><span data-lang="de">Parkplätze</span><span data-lang="es">Plazas de estacionamiento</span></span>
+                            <span>513</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -270,7 +309,7 @@
                 </div>
                 <div class="card">
                     <h3><span data-lang="en" class="active">Ownership</span><span data-lang="pl">Własność</span><span data-lang="de">Eigentum</span><span data-lang="es">Propiedad</span></h3>
-                    <p><span data-lang="en" class="active">Freehold ownership with clear title. No encumbrances or legal disputes.</span><span data-lang="pl">Pełna własność z czystym tytułem prawnym. Brak obciążeń i sporów prawnych.</span><span data-lang="de">Volleigentum mit klarem Titel. Keine Belastungen oder Rechtsstreitigkeiten.</span><span data-lang="es">Propiedad libre con título claro. Sin gravámenes ni disputas legales.</span></p>
+                    <p><span data-lang="en" class="active">Preliminary agreement concluded by GDYNIA BALTICSEA ESTATE sp. z o.o. Transfer of ownership conditional upon repayment of mortgage securities from investment funds. Upon transaction closing – full ownership without encumbrances, ready for development.</span><span data-lang="pl">Umowa przedwstępna zawarta przez GDYNIA BALTICSEA ESTATE sp. z o.o. Przeniesienie własności warunkowane spłatą zabezpieczeń hipotecznych ze środków inwestycyjnych. Po zamknięciu transakcji – pełna własność bez obciążeń, gotowa do realizacji.</span><span data-lang="de">Vorvertrag abgeschlossen durch GDYNIA BALTICSEA ESTATE sp. z o.o. Eigentumsübertragung bedingt durch Rückzahlung der Hypothekensicherheiten aus Investitionsmitteln. Nach Transaktionsabschluss – volles Eigentum ohne Belastungen, entwicklungsbereit.</span><span data-lang="es">Contrato preliminar celebrado por GDYNIA BALTICSEA ESTATE sp. z o.o. Transferencia de propiedad condicionada al pago de garantías hipotecarias con fondos de inversión. Al cierre de la transacción – propiedad plena sin gravámenes, lista para desarrollo.</span></p>
                 </div>
             </div>
         </div>
