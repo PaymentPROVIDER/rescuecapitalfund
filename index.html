@@ -426,32 +426,18 @@
         .about-visual {
             position: relative;
             height: 500px;
-        }
-
-        .about-visual::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(135deg, var(--color-bg-tertiary) 0%, transparent 50%),
-                linear-gradient(45deg, transparent 50%, var(--color-bg-secondary) 100%);
+            background: #e8e8e8;
             border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
-        .about-visual::after {
-            content: 'RCF';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: var(--font-display);
-            font-size: 8rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            opacity: 0.1;
+        .about-visual img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         /* Process Section */
@@ -1030,7 +1016,9 @@
                 </p>
 
             </div>
-            <div class="about-visual"></div>
+            <div class="about-visual">
+                <img src="capital-fund-logo.svg" alt="Capital Fund Logo">
+            </div>
         </div>
     </section>
 
