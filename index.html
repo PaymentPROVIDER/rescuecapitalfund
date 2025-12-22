@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warsaw Riverside Residence | RescueCapital</title>
+    <title>Rescue Capital Fund | Crisis Management & Restructuring</title>
+    <meta name="description" content="Expert crisis management, restructuring, and financial advisory services for companies in distress.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0c10;
-            --card-bg: #12151c;
-            --gold: #c9a962;
-            --gold-light: #dfc078;
-            --gold-dim: rgba(201, 169, 98, 0.2);
-            --text-white: #e8e6e3;
-            --text-gray: #9ca3af;
+            --color-bg: #0a0c10;
+            --color-bg-secondary: #12151c;
+            --color-bg-tertiary: #1a1e28;
+            --color-text: #e8e6e3;
+            --color-text-muted: #9ca3af;
+            --color-accent: #c9a962;
+            --color-accent-light: #dfc078;
+            --color-accent-dark: #a88b4a;
+            --color-border: rgba(201, 169, 98, 0.2);
             --font-display: 'Cormorant Garamond', Georgia, serif;
             --font-body: 'Outfit', -apple-system, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -32,15 +36,28 @@
 
         body {
             font-family: var(--font-body);
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            line-height: 1.6;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-weight: 300;
             overflow-x: hidden;
         }
 
-        /* Language visibility */
-        [data-lang] { display: none; }
-        [data-lang].active { display: inline; }
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(201, 169, 98, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(201, 169, 98, 0.02) 0%, transparent 50%),
+                linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
 
         /* Navigation */
         nav {
@@ -49,252 +66,114 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(10, 12, 16, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--gold-dim);
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            transition: var(--transition);
         }
 
         .logo {
             font-family: var(--font-display);
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            color: var(--gold);
-            letter-spacing: 0.05em;
+            color: var(--color-accent);
+            letter-spacing: 0.02em;
             text-decoration: none;
         }
 
         .logo span {
-            color: var(--text-white);
+            color: var(--color-text);
+            font-weight: 400;
         }
 
         .nav-links {
             display: flex;
+            gap: 3rem;
             align-items: center;
-            gap: 2.5rem;
         }
 
         .nav-links a {
-            font-family: var(--font-body);
+            color: var(--color-text-muted);
+            text-decoration: none;
             font-size: 0.9rem;
             font-weight: 400;
-            color: var(--text-gray);
-            text-decoration: none;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            transition: color 0.3s ease;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-accent);
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
-            color: var(--gold);
+            color: var(--color-accent);
         }
 
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Switcher */
         .lang-switcher {
             display: flex;
             gap: 0.5rem;
-            margin-left: 1rem;
-            padding-left: 1.5rem;
-            border-left: 1px solid var(--gold-dim);
+            margin-left: 2rem;
+            padding-left: 2rem;
+            border-left: 1px solid var(--color-border);
         }
 
         .lang-btn {
             background: transparent;
-            border: 1px solid transparent;
-            color: var(--text-gray);
-            font-family: var(--font-body);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            padding: 0.4rem 0.8rem;
             font-size: 0.75rem;
+            font-family: var(--font-body);
             font-weight: 500;
-            padding: 0.35rem 0.6rem;
+            letter-spacing: 0.1em;
             cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.05em;
+            transition: var(--transition);
         }
 
-        .lang-btn:hover, .lang-btn.active {
-            color: var(--gold);
-            border-color: var(--gold-dim);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: var(--gold);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--bg-dark);
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .mobile-menu.active {
-            display: flex;
-        }
-
-        .mobile-menu a {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--text-white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--gold);
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 2rem;
-            color: var(--gold);
-            cursor: pointer;
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: var(--color-bg);
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            padding: 8rem 2rem 4rem;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 4rem 4rem;
             position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(201, 169, 98, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.5rem 1.25rem;
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.15), rgba(201, 169, 98, 0.05));
-            border: 1px solid var(--gold-dim);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease 0.1s forwards;
-            opacity: 0;
-        }
-
-        .hero h1 em {
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        .location {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-            opacity: 0;
-        }
-
-        .hero-description {
-            max-width: 600px;
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.3s forwards;
-            opacity: 0;
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--gold-dim);
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        .stat-item {
-            text-align: left;
-        }
-
-        .stat-value {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 500;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -302,1407 +181,1170 @@
             }
         }
 
+        .hero-tagline {
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--color-text);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(201, 169, 98, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--color-text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 60px;
+            height: 1px;
+            background: var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--color-accent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
+        }
+
         /* Section Styles */
         section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 8rem 4rem;
         }
 
         .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 400;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--color-text);
         }
 
         .section-title em {
-            color: var(--gold);
             font-style: italic;
+            color: var(--color-accent);
         }
 
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto;
+        /* Services Section */
+        .services {
+            background: var(--color-bg-secondary);
         }
 
-        /* Investment Highlights */
-        .highlights-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .highlight-card {
-            background: var(--card-bg);
-            border: 1px solid var(--gold-dim);
-            border-radius: 8px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
+        .service-card {
+            background: var(--color-bg-tertiary);
+            padding: 3rem;
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid transparent;
         }
 
-        .highlight-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .highlight-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), rgba(201, 169, 98, 0.05));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .highlight-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--text-white);
-        }
-
-        .highlight-card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Budget & Returns */
-        .budget-section {
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid var(--gold-dim);
-            overflow: hidden;
-        }
-
-        .budget-header {
-            padding: 2rem 2.5rem;
-            border-bottom: 1px solid var(--gold-dim);
-        }
-
-        .budget-header h3 {
-            font-family: var(--font-display);
-            font-size: 1.75rem;
-            font-weight: 500;
-        }
-
-        .budget-table {
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), transparent);
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .budget-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2.5rem;
-            border-bottom: 1px solid rgba(201, 169, 98, 0.1);
-            transition: background 0.3s ease;
+        .service-card:hover {
+            border-color: var(--color-border);
+            transform: translateY(-5px);
         }
 
-        .budget-row:hover {
-            background: rgba(201, 169, 98, 0.05);
+        .service-card:hover::before {
+            opacity: 1;
         }
 
-        .budget-row:last-child {
-            border-bottom: none;
+        .service-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            opacity: 0.3;
+            margin-bottom: 1.5rem;
         }
 
-        .budget-label {
-            color: var(--text-gray);
-            font-size: 1rem;
-        }
-
-        .budget-value {
+        .service-card h3 {
             font-family: var(--font-display);
             font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--gold);
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 1rem;
         }
 
-        .budget-row.total {
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.15), rgba(201, 169, 98, 0.05));
+        .service-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
         }
 
-        .budget-row.total .budget-label {
-            color: var(--text-white);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .budget-row.total .budget-value {
-            font-size: 2rem;
-        }
-
-        .returns-grid {
+        /* About Section */
+        .about {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             margin-top: 3rem;
         }
 
-        .return-card {
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.1), rgba(201, 169, 98, 0.02));
-            border: 1px solid var(--gold-dim);
-            border-radius: 12px;
+        .stat {
             padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
+            background: var(--color-bg-secondary);
+            border-left: 2px solid var(--color-accent);
         }
 
-        .return-card:hover {
-            border-color: var(--gold);
-            transform: scale(1.02);
-        }
-
-        .return-value {
+        .stat-number {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 600;
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 0.5rem;
         }
 
-        .return-label {
-            color: var(--text-gray);
-            font-size: 0.9rem;
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
 
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
+        .about-visual {
             position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 16/10;
+            height: 500px;
         }
 
-        .gallery-item.featured {
-            grid-column: span 2;
-            aspect-ratio: 21/9;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-item::after {
+        .about-visual::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(10, 12, 16, 0.6), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .gallery-overlay span {
-            background: rgba(201, 169, 98, 0.9);
-            color: var(--bg-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 12, 16, 0.95);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            width: 48px;
-            height: 48px;
-            border: 1px solid var(--gold-dim);
-            border-radius: 50%;
-            background: var(--card-bg);
-            color: var(--gold);
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            background: var(--gold);
-            color: var(--bg-dark);
-        }
-
-        /* Masterplan */
-        .masterplan-container {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--gold-dim);
-            cursor: pointer;
-        }
-
-        .masterplan-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.6s ease;
-        }
-
-        .masterplan-container:hover img {
-            transform: scale(1.02);
-        }
-
-        /* Legal Status */
-        .legal-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .legal-card {
-            background: var(--card-bg);
-            border: 1px solid var(--gold-dim);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .legal-card:hover {
-            border-color: var(--gold);
-        }
-
-        .legal-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), rgba(201, 169, 98, 0.05));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            font-size: 1.25rem;
-        }
-
-        .legal-card h4 {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-        }
-
-        .legal-card p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .legal-status {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.35rem 0.75rem;
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            border-radius: 4px;
-            color: #22c55e;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .legal-status.pending {
-            background: rgba(234, 179, 8, 0.15);
-            border-color: rgba(234, 179, 8, 0.3);
-            color: #eab308;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 8rem 2rem;
-            position: relative;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: 
-                radial-gradient(ellipse at center, rgba(201, 169, 98, 0.1) 0%, transparent 60%);
+                linear-gradient(135deg, var(--color-bg-tertiary) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 50%, var(--color-bg-secondary) 100%);
+            border: 1px solid var(--color-border);
+        }
+
+        .about-visual::after {
+            content: 'RCF';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            opacity: 0.1;
+        }
+
+        /* Process Section */
+        .process {
+            background: var(--color-bg-secondary);
+        }
+
+        /* Partnership Section */
+        .partnership {
+            background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnership::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(201, 169, 98, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
-        .cta-content {
+        .partnership-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .partnership-icon {
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .partnership-text {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
+            line-height: 1.9;
+            margin-bottom: 3rem;
+        }
+
+        .partnership-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .partnership-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+
+        .feature-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .process-timeline {
+            display: flex;
+            gap: 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 3rem;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--color-border);
+        }
+
+        .process-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--color-bg);
+            border: 2px solid var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-accent);
             position: relative;
             z-index: 1;
         }
 
-        .cta-title {
+        .process-step h4 {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
         }
 
-        .cta-title em {
-            color: var(--gold);
-            font-style: italic;
+        .process-step p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
         }
 
-        .cta-description {
-            color: var(--text-gray);
-            font-size: 1.1rem;
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-content {
             max-width: 600px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto;
         }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1.25rem 2.5rem;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: var(--bg-dark);
+        .contact-email {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-accent);
             text-decoration: none;
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
+            display: inline-block;
+            margin: 2rem 0;
+            transition: var(--transition);
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(201, 169, 98, 0.4);
+        .contact-email:hover {
+            color: var(--color-accent-light);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h5 {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-item p {
+            color: var(--color-text);
+            font-size: 1rem;
         }
 
         /* Footer */
         footer {
-            background: var(--card-bg);
-            border-top: 1px solid var(--gold-dim);
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid var(--gold-dim);
-        }
-
-        .footer-brand {
-            max-width: 400px;
-        }
-
-        .footer-logo {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .footer-logo span {
-            color: var(--text-white);
-        }
-
-        .footer-brand p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 4rem;
-        }
-
-        .footer-column h5 {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 1.25rem;
-            color: var(--text-white);
-        }
-
-        .footer-column a {
-            display: block;
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            color: var(--gold);
-        }
-
-        .footer-bottom {
+            padding: 3rem 4rem;
+            border-top: 1px solid var(--color-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.85rem;
-            color: var(--text-gray);
+            color: var(--color-text-muted);
+        }
+
+        footer a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--color-text);
+            transition: var(--transition);
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .stats-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .highlights-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .returns-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .legal-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-top {
-                flex-direction: column;
-                gap: 3rem;
-            }
-
-            .footer-links {
-                gap: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
             nav {
-                padding: 1rem 1.5rem;
+                padding: 1.5rem 2rem;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .hamburger {
+            .nav-links.mobile-active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 12, 16, 0.98);
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .nav-links.mobile-active .lang-switcher {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                padding-top: 1rem;
+                border-top: 1px solid var(--color-border);
+            }
+
+            .mobile-menu-btn {
                 display: flex;
             }
 
-            .hero {
-                padding: 7rem 1.5rem 3rem;
+            section, .hero {
+                padding: 4rem 2rem;
             }
 
-            .stats-row {
+            .about {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 3rem;
             }
 
-            section {
-                padding: 4rem 1.5rem;
+            .about-visual {
+                height: 300px;
             }
 
-            .gallery-grid {
-                grid-template-columns: 1fr;
+            .process-timeline {
+                flex-direction: column;
             }
 
-            .gallery-item.featured {
-                grid-column: span 1;
-                aspect-ratio: 16/10;
+            .process-timeline::before {
+                top: 0;
+                bottom: 0;
+                left: 30px;
+                right: auto;
+                width: 1px;
+                height: auto;
             }
 
-            .returns-grid {
-                grid-template-columns: 1fr;
+            .process-step {
+                text-align: left;
+                display: flex;
+                gap: 2rem;
+                align-items: flex-start;
             }
 
-            .legal-grid {
-                grid-template-columns: 1fr;
+            .step-number {
+                margin: 0;
+                flex-shrink: 0;
             }
 
-            .budget-row {
-                padding: 1.25rem 1.5rem;
-            }
-
-            .budget-value {
-                font-size: 1.25rem;
-            }
-
-            .footer-links {
+            .contact-info {
                 flex-direction: column;
                 gap: 2rem;
             }
 
-            .footer-bottom {
+            footer {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
         }
 
-        /* Smooth reveal animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Language content visibility */
+        [data-lang] {
+            display: none;
+        }
+
+        [data-lang].active {
+            display: inline;
+        }
+
+        .cta-group [data-lang].active {
+            display: inline;
+        }
+
+        .contact-info [data-lang].active {
+            display: block;
+        }
+
+        .process-step [data-lang].active {
+            display: inline;
+        }
+
+        .hero-description [data-lang].active,
+        .partnership-text [data-lang].active,
+        .service-card p [data-lang].active,
+        .about-content p [data-lang].active {
+            display: inline;
+        }
+
+        .section-header [data-lang].active,
+        .section-title [data-lang].active {
+            display: inline;
+        }
+
+        .hero h1 [data-lang].active {
+            display: inline;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">Rescue<span>Capital</span></a>
-            <div class="nav-links">
-                <a href="#">
-                    <span data-lang="en" class="active">Home</span>
-                    <span data-lang="pl">Strona główna</span>
-                    <span data-lang="de">Startseite</span>
-                    <span data-lang="es">Inicio</span>
-                </a>
-                <a href="#gallery">
-                    <span data-lang="en" class="active">Projects</span>
-                    <span data-lang="pl">Projekty</span>
-                    <span data-lang="de">Projekte</span>
-                    <span data-lang="es">Proyectos</span>
-                </a>
-                <a href="#contact">
-                    <span data-lang="en" class="active">Contact</span>
-                    <span data-lang="pl">Kontakt</span>
-                    <span data-lang="de">Kontakt</span>
-                    <span data-lang="es">Contacto</span>
-                </a>
-                <div class="lang-switcher">
-                    <button class="lang-btn active" data-language="en">EN</button>
-                    <button class="lang-btn" data-language="pl">PL</button>
-                    <button class="lang-btn" data-language="de">DE</button>
-                    <button class="lang-btn" data-language="es">ES</button>
-                </div>
-            </div>
-            <div class="hamburger" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+        <a href="#" class="logo">Rescue<span>Capital</span>Fund</a>
+        <div class="nav-links">
+            <a href="#services">
+                <span data-lang="en" class="active">Services</span>
+                <span data-lang="pl">Usługi</span>
+                <span data-lang="de">Leistungen</span>
+                <span data-lang="es">Servicios</span>
+            </a>
+            <a href="#about">
+                <span data-lang="en" class="active">About</span>
+                <span data-lang="pl">O nas</span>
+                <span data-lang="de">Über uns</span>
+                <span data-lang="es">Nosotros</span>
+            </a>
+            <a href="#process">
+                <span data-lang="en" class="active">Process</span>
+                <span data-lang="pl">Proces</span>
+                <span data-lang="de">Prozess</span>
+                <span data-lang="es">Proceso</span>
+            </a>
+            <a href="projects.html">
+                <span data-lang="en" class="active">Projects</span>
+                <span data-lang="pl">Projekty</span>
+                <span data-lang="de">Projekte</span>
+                <span data-lang="es">Proyectos</span>
+            </a>
+            <a href="#partnership">
+                <span data-lang="en" class="active">Partnership</span>
+                <span data-lang="pl">Partnerstwo</span>
+                <span data-lang="de">Partnerschaft</span>
+                <span data-lang="es">Asociación</span>
+            </a>
+            <a href="#contact">
+                <span data-lang="en" class="active">Contact</span>
+                <span data-lang="pl">Kontakt</span>
+                <span data-lang="de">Kontakt</span>
+                <span data-lang="es">Contacto</span>
+            </a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang-btn="en">EN</button>
+                <button class="lang-btn" data-lang-btn="pl">PL</button>
+                <button class="lang-btn" data-lang-btn="de">DE</button>
+                <button class="lang-btn" data-lang-btn="es">ES</button>
             </div>
         </div>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="close-menu" onclick="toggleMobileMenu()">✕</div>
-        <a href="#" onclick="toggleMobileMenu()">
-            <span data-lang="en" class="active">Home</span>
-            <span data-lang="pl">Strona główna</span>
-            <span data-lang="de">Startseite</span>
-            <span data-lang="es">Inicio</span>
-        </a>
-        <a href="#gallery" onclick="toggleMobileMenu()">
-            <span data-lang="en" class="active">Projects</span>
-            <span data-lang="pl">Projekty</span>
-            <span data-lang="de">Projekte</span>
-            <span data-lang="es">Proyectos</span>
-        </a>
-        <a href="#contact" onclick="toggleMobileMenu()">
-            <span data-lang="en" class="active">Contact</span>
-            <span data-lang="pl">Kontakt</span>
-            <span data-lang="de">Kontakt</span>
-            <span data-lang="es">Contacto</span>
-        </a>
-        <div class="lang-switcher" style="border: none; padding: 0; margin-top: 2rem;">
-            <button class="lang-btn active" data-language="en">EN</button>
-            <button class="lang-btn" data-language="pl">PL</button>
-            <button class="lang-btn" data-language="de">DE</button>
-            <button class="lang-btn" data-language="es">ES</button>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-container">
-            <div class="badge">
-                <span data-lang="en" class="active">Featured Project</span>
-                <span data-lang="pl">Wyróżniony Projekt</span>
-                <span data-lang="de">Ausgewähltes Projekt</span>
-                <span data-lang="es">Proyecto Destacado</span>
-            </div>
+        <div class="hero-content">
+            <p class="hero-tagline">
+                <span data-lang="en" class="active">Crisis Management & Restructuring</span>
+                <span data-lang="pl">Zarządzanie Kryzysowe & Restrukturyzacja</span>
+                <span data-lang="de">Krisenmanagement & Restrukturierung</span>
+                <span data-lang="es">Gestión de Crisis & Reestructuración</span>
+            </p>
             <h1>
-                <span data-lang="en" class="active">Warsaw <em>Riverside</em> Residence</span>
-                <span data-lang="pl">Warszawska Rezydencja <em>Nadrzeczna</em></span>
-                <span data-lang="de">Warschau <em>Riverside</em> Residenz</span>
-                <span data-lang="es">Residencia <em>Riverside</em> Varsovia</span>
+                <span data-lang="en" class="active">When your business faces <em>challenges</em>, we provide <em>solutions</em></span>
+                <span data-lang="pl">Gdy Twoja firma stoi przed <em>wyzwaniami</em>, my dostarczamy <em>rozwiązania</em></span>
+                <span data-lang="de">Wenn Ihr Unternehmen <em>Herausforderungen</em> gegenübersteht, bieten wir <em>Lösungen</em></span>
+                <span data-lang="es">Cuando su empresa enfrenta <em>desafíos</em>, nosotros ofrecemos <em>soluciones</em></span>
             </h1>
-            <div class="location">
-                <span>📍</span>
-                <span data-lang="en" class="active">Warsaw, Poland</span>
-                <span data-lang="pl">Warszawa, Polska</span>
-                <span data-lang="de">Warschau, Polen</span>
-                <span data-lang="es">Varsovia, Polonia</span>
-            </div>
             <p class="hero-description">
-                <span data-lang="en" class="active">A landmark residential development redefining luxury living in Poland's capital. This exceptional project offers an unparalleled investment opportunity in one of Europe's fastest-growing real estate markets.</span>
-                <span data-lang="pl">Przełomowa inwestycja mieszkaniowa redefiniująca luksusowe życie w stolicy Polski. Ten wyjątkowy projekt oferuje niezrównaną okazję inwestycyjną na jednym z najszybciej rozwijających się rynków nieruchomości w Europie.</span>
-                <span data-lang="de">Eine bahnbrechende Wohnanlage, die das Luxusleben in Polens Hauptstadt neu definiert. Dieses außergewöhnliche Projekt bietet eine unvergleichliche Investitionsmöglichkeit in einem der am schnellsten wachsenden Immobilienmärkte Europas.</span>
-                <span data-lang="es">Un desarrollo residencial emblemático que redefine la vida de lujo en la capital de Polonia. Este proyecto excepcional ofrece una oportunidad de inversión sin igual en uno de los mercados inmobiliarios de más rápido crecimiento en Europa.</span>
+                <span data-lang="en" class="active">Expert advisory services for companies and projects in distress. We combine financial expertise, legal support, and industry knowledge to navigate your business through turbulent times.</span>
+                <span data-lang="pl">Profesjonalne usługi doradcze dla firm i projektów w trudnej sytuacji. Łączymy wiedzę finansową, wsparcie prawne i znajomość branży, by przeprowadzić Twoją firmę przez trudne czasy.</span>
+                <span data-lang="de">Professionelle Beratungsdienstleistungen für Unternehmen und Projekte in schwierigen Situationen. Wir kombinieren Finanzexpertise, rechtliche Unterstützung und Branchenwissen, um Ihr Unternehmen durch turbulente Zeiten zu führen.</span>
+                <span data-lang="es">Servicios de asesoría experta para empresas y proyectos en dificultades. Combinamos experiencia financiera, apoyo legal y conocimiento de la industria para guiar su negocio en tiempos turbulentos.</span>
             </p>
-            <div class="stats-row">
-                <div class="stat-item">
-                    <div class="stat-value">118,000</div>
-                    <div class="stat-label">
-                        <span data-lang="en" class="active">M² Construction</span>
-                        <span data-lang="pl">M² Budowy</span>
-                        <span data-lang="de">M² Baufläche</span>
-                        <span data-lang="es">M² Construcción</span>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">2,150</div>
-                    <div class="stat-label">
-                        <span data-lang="en" class="active">Residential Units</span>
-                        <span data-lang="pl">Jednostek Mieszkalnych</span>
-                        <span data-lang="de">Wohneinheiten</span>
-                        <span data-lang="es">Unidades Residenciales</span>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">
-                        <span data-lang="en" class="active">€224M</span>
-                        <span data-lang="pl">963M zł</span>
-                        <span data-lang="de">€224M</span>
-                        <span data-lang="es">€224M</span>
-                    </div>
-                    <div class="stat-label">
-                        <span data-lang="en" class="active">Total Budget</span>
-                        <span data-lang="pl">Całkowity Budżet</span>
-                        <span data-lang="de">Gesamtbudget</span>
-                        <span data-lang="es">Presupuesto Total</span>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">2026</div>
-                    <div class="stat-label">
-                        <span data-lang="en" class="active">Est. Completion</span>
-                        <span data-lang="pl">Planowane Ukończenie</span>
-                        <span data-lang="de">Geplante Fertigstellung</span>
-                        <span data-lang="es">Finalización Est.</span>
-                    </div>
-                </div>
+            <div class="cta-group">
+                <a href="#contact" class="btn btn-primary">
+                    <span data-lang="en" class="active">Schedule Consultation</span>
+                    <span data-lang="pl">Umów Konsultację</span>
+                    <span data-lang="de">Beratung Vereinbaren</span>
+                    <span data-lang="es">Programar Consulta</span>
+                </a>
+                <a href="#services" class="btn btn-secondary">
+                    <span data-lang="en" class="active">Our Services</span>
+                    <span data-lang="pl">Nasze Usługi</span>
+                    <span data-lang="de">Unsere Leistungen</span>
+                    <span data-lang="es">Nuestros Servicios</span>
+                </a>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <span data-lang="en" class="active">Scroll to explore</span>
+            <span data-lang="pl">Przewiń, aby poznać więcej</span>
+            <span data-lang="de">Scrollen Sie, um mehr zu erfahren</span>
+            <span data-lang="es">Desplácese para explorar</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- Investment Highlights -->
-    <section class="reveal">
+    <!-- Services Section -->
+    <section class="services" id="services">
         <div class="section-header">
-            <h2 class="section-title">
-                <span data-lang="en" class="active">Investment <em>Highlights</em></span>
-                <span data-lang="pl">Najważniejsze <em>Informacje</em> Inwestycyjne</span>
-                <span data-lang="de">Investitions<em>highlights</em></span>
-                <span data-lang="es">Aspectos <em>Destacados</em> de la Inversión</span>
-            </h2>
-            <p class="section-subtitle">
-                <span data-lang="en" class="active">Key factors that make this project an exceptional investment opportunity</span>
-                <span data-lang="pl">Kluczowe czynniki, które czynią ten projekt wyjątkową okazją inwestycyjną</span>
-                <span data-lang="de">Schlüsselfaktoren, die dieses Projekt zu einer außergewöhnlichen Investitionsmöglichkeit machen</span>
-                <span data-lang="es">Factores clave que hacen de este proyecto una oportunidad de inversión excepcional</span>
+            <p class="section-label">
+                <span data-lang="en" class="active">What We Do</span>
+                <span data-lang="pl">Co Robimy</span>
+                <span data-lang="de">Was Wir Tun</span>
+                <span data-lang="es">Qué Hacemos</span>
             </p>
+            <h2 class="section-title">
+                <span data-lang="en" class="active">Comprehensive <em>support</em> for businesses in transition</span>
+                <span data-lang="pl">Kompleksowe <em>wsparcie</em> dla firm w okresie przejściowym</span>
+                <span data-lang="de">Umfassende <em>Unterstützung</em> für Unternehmen im Wandel</span>
+                <span data-lang="es">Apoyo <em>integral</em> para empresas en transición</span>
+            </h2>
         </div>
-        <div class="highlights-grid">
-            <div class="highlight-card">
-                <div class="highlight-icon">🏙️</div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-number">01</div>
                 <h3>
-                    <span data-lang="en" class="active">Prime Location</span>
-                    <span data-lang="pl">Doskonała Lokalizacja</span>
-                    <span data-lang="de">Erstklassige Lage</span>
-                    <span data-lang="es">Ubicación Privilegiada</span>
+                    <span data-lang="en" class="active">Crisis Management</span>
+                    <span data-lang="pl">Zarządzanie Kryzysowe</span>
+                    <span data-lang="de">Krisenmanagement</span>
+                    <span data-lang="es">Gestión de Crisis</span>
                 </h3>
                 <p>
-                    <span data-lang="en" class="active">Strategically positioned along Warsaw's riverfront, offering stunning views and direct access to the city's vibrant cultural and business districts. Excellent transport connectivity ensures high demand from professionals and families.</span>
-                    <span data-lang="pl">Strategicznie położony wzdłuż nabrzeża Warszawy, oferujący wspaniałe widoki i bezpośredni dostęp do tętniących życiem dzielnic kulturalnych i biznesowych miasta. Doskonała komunikacja zapewnia wysokie zainteresowanie ze strony profesjonalistów i rodzin.</span>
-                    <span data-lang="de">Strategisch an Warschaus Flussufer gelegen, mit atemberaubender Aussicht und direktem Zugang zu den lebhaften Kultur- und Geschäftsvierteln der Stadt. Hervorragende Verkehrsanbindung sichert hohe Nachfrage von Berufstätigen und Familien.</span>
-                    <span data-lang="es">Ubicado estratégicamente a lo largo de la ribera del Vístula en Varsovia, ofreciendo vistas impresionantes y acceso directo a los vibrantes distritos culturales y comerciales de la ciudad. La excelente conectividad de transporte asegura una alta demanda.</span>
+                    <span data-lang="en" class="active">Rapid response and strategic intervention when your business faces critical challenges. We assess, stabilize, and implement turnaround strategies to protect value and ensure continuity.</span>
+                    <span data-lang="pl">Szybka reakcja i strategiczna interwencja, gdy Twoja firma stoi przed krytycznymi wyzwaniami. Oceniamy sytuację, stabilizujemy działalność i wdrażamy strategie naprawcze, aby chronić wartość i zapewnić ciągłość.</span>
+                    <span data-lang="de">Schnelle Reaktion und strategische Intervention, wenn Ihr Unternehmen vor kritischen Herausforderungen steht. Wir bewerten, stabilisieren und implementieren Turnaround-Strategien zum Schutz von Werten und zur Sicherstellung der Kontinuität.</span>
+                    <span data-lang="es">Respuesta rápida e intervención estratégica cuando su empresa enfrenta desafíos críticos. Evaluamos, estabilizamos e implementamos estrategias de recuperación para proteger el valor y garantizar la continuidad.</span>
                 </p>
             </div>
-            <div class="highlight-card">
-                <div class="highlight-icon">📈</div>
+            <div class="service-card">
+                <div class="service-number">02</div>
                 <h3>
-                    <span data-lang="en" class="active">Strong Market Growth</span>
-                    <span data-lang="pl">Silny Wzrost Rynku</span>
-                    <span data-lang="de">Starkes Marktwachstum</span>
-                    <span data-lang="es">Fuerte Crecimiento del Mercado</span>
+                    <span data-lang="en" class="active">Financial Restructuring</span>
+                    <span data-lang="pl">Restrukturyzacja Finansowa</span>
+                    <span data-lang="de">Finanzielle Restrukturierung</span>
+                    <span data-lang="es">Reestructuración Financiera</span>
                 </h3>
                 <p>
-                    <span data-lang="en" class="active">Warsaw's residential market continues to outperform European averages with consistent year-over-year price appreciation. The city's growing tech sector and international business presence drive sustained demand for premium housing.</span>
-                    <span data-lang="pl">Warszawski rynek mieszkaniowy nadal przewyższa europejskie średnie, z konsekwentnym wzrostem cen rok do roku. Rosnący sektor technologiczny miasta i obecność międzynarodowych firm napędzają stały popyt na mieszkania premium.</span>
-                    <span data-lang="de">Der Warschauer Wohnungsmarkt übertrifft weiterhin den europäischen Durchschnitt mit konstanter Preissteigerung. Der wachsende Technologiesektor und internationale Unternehmen treiben die anhaltende Nachfrage nach Premium-Wohnungen.</span>
-                    <span data-lang="es">El mercado residencial de Varsovia continúa superando los promedios europeos con una apreciación de precios constante. El creciente sector tecnológico y la presencia internacional impulsan la demanda sostenida de viviendas premium.</span>
+                    <span data-lang="en" class="active">Expert guidance through debt restructuring, creditor negotiations, and capital optimization. We develop sustainable financial frameworks that restore stability and enable growth.</span>
+                    <span data-lang="pl">Profesjonalne wsparcie w restrukturyzacji zadłużenia, negocjacjach z wierzycielami i optymalizacji kapitału. Opracowujemy zrównoważone ramy finansowe przywracające stabilność i umożliwiające wzrost.</span>
+                    <span data-lang="de">Professionelle Begleitung bei Schuldenrestrukturierung, Gläubigerverhandlungen und Kapitaloptimierung. Wir entwickeln nachhaltige Finanzstrukturen, die Stabilität wiederherstellen und Wachstum ermöglichen.</span>
+                    <span data-lang="es">Orientación experta en reestructuración de deudas, negociaciones con acreedores y optimización de capital. Desarrollamos marcos financieros sostenibles que restauran la estabilidad y permiten el crecimiento.</span>
                 </p>
             </div>
-            <div class="highlight-card">
-                <div class="highlight-icon">🌿</div>
+            <div class="service-card">
+                <div class="service-number">03</div>
                 <h3>
-                    <span data-lang="en" class="active">Sustainable Design</span>
-                    <span data-lang="pl">Zrównoważony Projekt</span>
-                    <span data-lang="de">Nachhaltiges Design</span>
-                    <span data-lang="es">Diseño Sostenible</span>
+                    <span data-lang="en" class="active">Legal Support</span>
+                    <span data-lang="pl">Obsługa Prawna</span>
+                    <span data-lang="de">Rechtliche Unterstützung</span>
+                    <span data-lang="es">Apoyo Legal</span>
                 </h3>
                 <p>
-                    <span data-lang="en" class="active">BREEAM Excellent certified development featuring green rooftops, energy-efficient systems, and extensive landscaped courtyards. Future-proof design ensures long-term value retention and attracts environmentally conscious buyers.</span>
-                    <span data-lang="pl">Inwestycja z certyfikatem BREEAM Excellent, z zielonymi dachami, energooszczędnymi systemami i rozległymi zielonymi dziedzińcami. Przyszłościowy projekt zapewnia długoterminowe utrzymanie wartości i przyciąga ekologicznie świadomych nabywców.</span>
-                    <span data-lang="de">BREEAM Excellent zertifizierte Entwicklung mit Gründächern, energieeffizienten Systemen und weitläufigen Landschaftsgärten. Zukunftssicheres Design gewährleistet langfristigen Werterhalt und zieht umweltbewusste Käufer an.</span>
-                    <span data-lang="es">Desarrollo certificado BREEAM Excellent con techos verdes, sistemas eficientes y amplios patios ajardinados. El diseño a prueba de futuro garantiza la retención de valor a largo plazo y atrae a compradores conscientes del medio ambiente.</span>
+                    <span data-lang="en" class="active">Comprehensive legal advisory services including corporate law, insolvency proceedings, contract negotiations, and regulatory compliance across multiple jurisdictions.</span>
+                    <span data-lang="pl">Kompleksowe usługi doradztwa prawnego obejmujące prawo korporacyjne, postępowania upadłościowe, negocjacje umów i zgodność regulacyjną w wielu jurysdykcjach.</span>
+                    <span data-lang="de">Umfassende Rechtsberatung einschließlich Gesellschaftsrecht, Insolvenzverfahren, Vertragsverhandlungen und regulatorische Compliance in mehreren Rechtsordnungen.</span>
+                    <span data-lang="es">Servicios integrales de asesoría legal incluyendo derecho corporativo, procedimientos de insolvencia, negociación de contratos y cumplimiento normativo en múltiples jurisdicciones.</span>
                 </p>
             </div>
-            <div class="highlight-card">
-                <div class="highlight-icon">🏆</div>
+            <div class="service-card">
+                <div class="service-number">04</div>
                 <h3>
-                    <span data-lang="en" class="active">Premium Amenities</span>
-                    <span data-lang="pl">Udogodnienia Premium</span>
-                    <span data-lang="de">Premium-Ausstattung</span>
-                    <span data-lang="es">Comodidades Premium</span>
+                    <span data-lang="en" class="active">Industry Specialists</span>
+                    <span data-lang="pl">Specjaliści Branżowi</span>
+                    <span data-lang="de">Branchenspezialisten</span>
+                    <span data-lang="es">Especialistas Sectoriales</span>
                 </h3>
                 <p>
-                    <span data-lang="en" class="active">Resort-style facilities including rooftop gardens, fitness centers, co-working spaces, and children's play areas. Underground parking and 24/7 security ensure convenience and peace of mind for all residents.</span>
-                    <span data-lang="pl">Udogodnienia w stylu kurortu, w tym ogrody na dachu, centra fitness, przestrzenie coworkingowe i place zabaw dla dzieci. Parking podziemny i całodobowa ochrona zapewniają wygodę i spokój wszystkim mieszkańcom.</span>
-                    <span data-lang="de">Resort-ähnliche Einrichtungen mit Dachgärten, Fitnesszentren, Co-Working-Räumen und Kinderspielplätzen. Tiefgarage und 24/7-Sicherheit gewährleisten Komfort und Sicherheit für alle Bewohner.</span>
-                    <span data-lang="es">Instalaciones tipo resort que incluyen jardines en la azotea, gimnasios, espacios de coworking y áreas de juegos infantiles. Estacionamiento subterráneo y seguridad 24/7 garantizan comodidad y tranquilidad para todos los residentes.</span>
+                    <span data-lang="en" class="active">Access to our network of seasoned professionals with deep expertise across sectors. We match your challenges with specialists who understand your industry's unique dynamics.</span>
+                    <span data-lang="pl">Dostęp do naszej sieci doświadczonych profesjonalistów z głęboką wiedzą w różnych sektorach. Dopasowujemy Twoje wyzwania do specjalistów rozumiejących specyfikę Twojej branży.</span>
+                    <span data-lang="de">Zugang zu unserem Netzwerk erfahrener Fachleute mit tiefgreifender Expertise in verschiedenen Sektoren. Wir verbinden Ihre Herausforderungen mit Spezialisten, die die einzigartige Dynamik Ihrer Branche verstehen.</span>
+                    <span data-lang="es">Acceso a nuestra red de profesionales experimentados con profunda experiencia en diversos sectores. Conectamos sus desafíos con especialistas que entienden la dinámica única de su industria.</span>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Budget & Returns -->
-    <section class="reveal">
-        <div class="section-header">
-            <h2 class="section-title">
-                <span data-lang="en" class="active">Budget & <em>Returns</em></span>
-                <span data-lang="pl">Budżet i <em>Zwroty</em></span>
-                <span data-lang="de">Budget & <em>Rendite</em></span>
-                <span data-lang="es">Presupuesto y <em>Retornos</em></span>
-            </h2>
-            <p class="section-subtitle">
-                <span data-lang="en" class="active">Detailed financial breakdown and projected investment returns</span>
-                <span data-lang="pl">Szczegółowy rozkład finansowy i przewidywane zwroty z inwestycji</span>
-                <span data-lang="de">Detaillierte Finanzaufschlüsselung und prognostizierte Renditen</span>
-                <span data-lang="es">Desglose financiero detallado y retornos de inversión proyectados</span>
-            </p>
-        </div>
-        <div class="budget-section">
-            <div class="budget-header">
-                <h3>
-                    <span data-lang="en" class="active">Project Budget Breakdown</span>
-                    <span data-lang="pl">Struktura Budżetu Projektu</span>
-                    <span data-lang="de">Projektbudget-Aufschlüsselung</span>
-                    <span data-lang="es">Desglose del Presupuesto del Proyecto</span>
-                </h3>
-            </div>
-            <div class="budget-table">
-                <div class="budget-row">
-                    <span class="budget-label">
-                        <span data-lang="en" class="active">Land Acquisition</span>
-                        <span data-lang="pl">Zakup Gruntu</span>
-                        <span data-lang="de">Grundstückserwerb</span>
-                        <span data-lang="es">Adquisición del Terreno</span>
-                    </span>
-                    <span class="budget-value">
-                        <span data-lang="en" class="active">€55,000,000</span>
-                        <span data-lang="pl">236 500 000 zł</span>
-                        <span data-lang="de">€55.000.000</span>
-                        <span data-lang="es">€55.000.000</span>
-                    </span>
+    <!-- About Section -->
+    <section id="about">
+        <div class="about">
+            <div class="about-content">
+                <div class="section-header">
+                    <p class="section-label">
+                        <span data-lang="en" class="active">About Us</span>
+                        <span data-lang="pl">O Nas</span>
+                        <span data-lang="de">Über Uns</span>
+                        <span data-lang="es">Sobre Nosotros</span>
+                    </p>
+                    <h2 class="section-title">
+                        <span data-lang="en" class="active">Trusted advisors in <em>critical</em> moments</span>
+                        <span data-lang="pl">Zaufani doradcy w <em>krytycznych</em> momentach</span>
+                        <span data-lang="de">Vertrauenswürdige Berater in <em>kritischen</em> Momenten</span>
+                        <span data-lang="es">Asesores de confianza en momentos <em>críticos</em></span>
+                    </h2>
                 </div>
-                <div class="budget-row">
-                    <span class="budget-label">
-                        <span data-lang="en" class="active">Construction Costs</span>
-                        <span data-lang="pl">Koszty Budowy</span>
-                        <span data-lang="de">Baukosten</span>
-                        <span data-lang="es">Costos de Construcción</span>
-                    </span>
-                    <span class="budget-value">
-                        <span data-lang="en" class="active">€165,000,000</span>
-                        <span data-lang="pl">709 500 000 zł</span>
-                        <span data-lang="de">€165.000.000</span>
-                        <span data-lang="es">€165.000.000</span>
-                    </span>
-                </div>
-                <div class="budget-row">
-                    <span class="budget-label">
-                        <span data-lang="en" class="active">Soft Costs (Design, Legal, Marketing)</span>
-                        <span data-lang="pl">Koszty Miękkie (Projektowanie, Prawo, Marketing)</span>
-                        <span data-lang="de">Nebenkosten (Design, Recht, Marketing)</span>
-                        <span data-lang="es">Costos Blandos (Diseño, Legal, Marketing)</span>
-                    </span>
-                    <span class="budget-value">
-                        <span data-lang="en" class="active">€4,000,000</span>
-                        <span data-lang="pl">17 200 000 zł</span>
-                        <span data-lang="de">€4.000.000</span>
-                        <span data-lang="es">€4.000.000</span>
-                    </span>
-                </div>
-                <div class="budget-row total">
-                    <span class="budget-label">
-                        <span data-lang="en" class="active">Total Investment</span>
-                        <span data-lang="pl">Całkowita Inwestycja</span>
-                        <span data-lang="de">Gesamtinvestition</span>
-                        <span data-lang="es">Inversión Total</span>
-                    </span>
-                    <span class="budget-value">
-                        <span data-lang="en" class="active">€224,000,000</span>
-                        <span data-lang="pl">963 200 000 zł</span>
-                        <span data-lang="de">€224.000.000</span>
-                        <span data-lang="es">€224.000.000</span>
-                    </span>
-                </div>
-                <div class="budget-row">
-                    <span class="budget-label">
-                        <span data-lang="en" class="active">Expected Sales Price per m²</span>
-                        <span data-lang="pl">Oczekiwana Cena Sprzedaży za m²</span>
-                        <span data-lang="de">Erwarteter Verkaufspreis pro m²</span>
-                        <span data-lang="es">Precio de Venta Esperado por m²</span>
-                    </span>
-                    <span class="budget-value">
-                        <span data-lang="en" class="active">€5,200/m²</span>
-                        <span data-lang="pl">22 360 zł/m²</span>
-                        <span data-lang="de">€5.200/m²</span>
-                        <span data-lang="es">€5.200/m²</span>
-                    </span>
-                </div>
-                <div class="budget-row total" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));">
-                    <span class="budget-label">
-                        <span data-lang="en" class="active">Projected Revenue</span>
-                        <span data-lang="pl">Przewidywane Przychody</span>
-                        <span data-lang="de">Prognostizierter Umsatz</span>
-                        <span data-lang="es">Ingresos Proyectados</span>
-                    </span>
-                    <span class="budget-value" style="color: #22c55e;">
-                        <span data-lang="en" class="active">€613,600,000</span>
-                        <span data-lang="pl">2 638 480 000 zł</span>
-                        <span data-lang="de">€613.600.000</span>
-                        <span data-lang="es">€613.600.000</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="returns-grid" style="grid-template-columns: 1fr; max-width: 400px; margin: 3rem auto 0;">
-            <div class="return-card">
-                <div class="return-value">36 mo</div>
-                <div class="return-label">
-                    <span data-lang="en" class="active">Investment Horizon</span>
-                    <span data-lang="pl">Horyzont Inwestycyjny</span>
-                    <span data-lang="de">Investitionshorizont</span>
-                    <span data-lang="es">Horizonte de Inversión</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery" class="reveal">
-        <div class="section-header">
-            <h2 class="section-title">
-                <span data-lang="en" class="active">Project <em>Gallery</em></span>
-                <span data-lang="pl"><em>Galeria</em> Projektu</span>
-                <span data-lang="de">Projekt<em>galerie</em></span>
-                <span data-lang="es"><em>Galería</em> del Proyecto</span>
-            </h2>
-            <p class="section-subtitle">
-                <span data-lang="en" class="active">Architectural visualizations showcasing the development's exceptional design</span>
-                <span data-lang="pl">Wizualizacje architektoniczne prezentujące wyjątkowy projekt inwestycji</span>
-                <span data-lang="de">Architekturvisualisierungen, die das außergewöhnliche Design zeigen</span>
-                <span data-lang="es">Visualizaciones arquitectónicas que muestran el diseño excepcional del desarrollo</span>
-            </p>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item featured" onclick="openLightbox('img1')">
-                <img id="img1" src="images/render_01.jpg" alt="Riverside Residence Main View">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Main Courtyard</span>
-                        <span data-lang="pl">Główny Dziedziniec</span>
-                        <span data-lang="de">Haupthof</span>
-                        <span data-lang="es">Patio Principal</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img2')">
-                <img id="img2" src="images/render_02.jpg" alt="Courtyard View">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Courtyard & Playground</span>
-                        <span data-lang="pl">Dziedziniec i Plac Zabaw</span>
-                        <span data-lang="de">Innenhof & Spielplatz</span>
-                        <span data-lang="es">Patio y Zona de Juegos</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img3')">
-                <img id="img3" src="images/render_05.jpg" alt="Playground Area">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Recreation Area</span>
-                        <span data-lang="pl">Strefa Rekreacyjna</span>
-                        <span data-lang="de">Erholungsbereich</span>
-                        <span data-lang="es">Área Recreativa</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img4')">
-                <img id="img4" src="images/render_06.jpg" alt="Building Facade">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Building Façade</span>
-                        <span data-lang="pl">Fasada Budynku</span>
-                        <span data-lang="de">Gebäudefassade</span>
-                        <span data-lang="es">Fachada del Edificio</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img5')">
-                <img id="img5" src="images/render_07.jpg" alt="Aerial View">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Aerial Overview</span>
-                        <span data-lang="pl">Widok z Lotu Ptaka</span>
-                        <span data-lang="de">Luftaufnahme</span>
-                        <span data-lang="es">Vista Aérea</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img6')">
-                <img id="img6" src="images/render_10.jpg" alt="Garden Courtyard">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Garden Courtyard</span>
-                        <span data-lang="pl">Dziedziniec Ogrodowy</span>
-                        <span data-lang="de">Garteninnenhof</span>
-                        <span data-lang="es">Patio Ajardinado</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img7')">
-                <img id="img7" src="images/render_12.jpg" alt="Rooftop Gardens">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Rooftop Gardens</span>
-                        <span data-lang="pl">Ogrody na Dachu</span>
-                        <span data-lang="de">Dachgärten</span>
-                        <span data-lang="es">Jardines en Azotea</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img8')">
-                <img id="img8" src="images/render_13.jpg" alt="Terrace View">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Rooftop Terrace</span>
-                        <span data-lang="pl">Taras na Dachu</span>
-                        <span data-lang="de">Dachterrasse</span>
-                        <span data-lang="es">Terraza en Azotea</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img9')">
-                <img id="img9" src="images/render_14.jpg" alt="Balcony View">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Private Balcony</span>
-                        <span data-lang="pl">Prywatny Balkon</span>
-                        <span data-lang="de">Privater Balkon</span>
-                        <span data-lang="es">Balcón Privado</span>
-                    </span>
-                </div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('img10')">
-                <img id="img10" src="images/render_17.jpg" alt="Street View">
-                <div class="gallery-overlay">
-                    <span>
-                        <span data-lang="en" class="active">Street Perspective</span>
-                        <span data-lang="pl">Perspektywa Uliczna</span>
-                        <span data-lang="de">Straßenansicht</span>
-                        <span data-lang="es">Perspectiva de Calle</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Masterplan -->
-    <section class="reveal">
-        <div class="section-header">
-            <h2 class="section-title">
-                <span data-lang="en" class="active">Development <em>Masterplan</em></span>
-                <span data-lang="pl"><em>Plan</em> Zagospodarowania</span>
-                <span data-lang="de">Entwicklungs<em>masterplan</em></span>
-                <span data-lang="es"><em>Plan Maestro</em> de Desarrollo</span>
-            </h2>
-            <p class="section-subtitle">
-                <span data-lang="en" class="active">Aerial view of the complete development layout and surrounding area</span>
-                <span data-lang="pl">Widok z lotu ptaka na kompletny układ inwestycji i okolicę</span>
-                <span data-lang="de">Luftaufnahme des kompletten Entwicklungslayouts und der Umgebung</span>
-                <span data-lang="es">Vista aérea del diseño completo del desarrollo y el área circundante</span>
-            </p>
-        </div>
-        <div class="masterplan-container" onclick="openLightbox('masterplan')">
-            <img id="masterplan" src="images/render_09.jpg" alt="Development Masterplan">
-        </div>
-    </section>
-
-    <!-- Legal Status -->
-    <section class="reveal">
-        <div class="section-header">
-            <h2 class="section-title">
-                <span data-lang="en" class="active">Legal <em>Status</em></span>
-                <span data-lang="pl">Status <em>Prawny</em></span>
-                <span data-lang="de">Rechtlicher <em>Status</em></span>
-                <span data-lang="es">Estado <em>Legal</em></span>
-            </h2>
-            <p class="section-subtitle">
-                <span data-lang="en" class="active">Current status of permits, approvals, and legal documentation</span>
-                <span data-lang="pl">Aktualny status pozwoleń, zatwierdzeń i dokumentacji prawnej</span>
-                <span data-lang="de">Aktueller Status von Genehmigungen und rechtlicher Dokumentation</span>
-                <span data-lang="es">Estado actual de permisos, aprobaciones y documentación legal</span>
-            </p>
-        </div>
-        <div class="legal-grid" style="grid-template-columns: 1fr;">
-            <div class="legal-card" style="text-align: center; max-width: 700px; margin: 0 auto;">
-                <div class="legal-icon" style="margin: 0 auto 1.25rem;">⚖️</div>
-                <h4>
-                    <span data-lang="en" class="active">LEX DEVELOPMENT Process</span>
-                    <span data-lang="pl">Proces LEX DEVELOPMENT</span>
-                    <span data-lang="de">LEX DEVELOPMENT Verfahren</span>
-                    <span data-lang="es">Proceso LEX DEVELOPMENT</span>
-                </h4>
-                <p>
-                    <span data-lang="en" class="active">Finalization of the LEX DEVELOPMENT process is underway. Upon obtaining all required documentation, the project will be ready for immediate implementation.</span>
-                    <span data-lang="pl">Trwa finalizacja procesu LEX DEVELOPMENT. Po uzyskaniu wszystkich wymaganych dokumentów projekt będzie gotowy do realizacji.</span>
-                    <span data-lang="de">Die Finalisierung des LEX DEVELOPMENT-Verfahrens ist im Gange. Nach Erhalt aller erforderlichen Unterlagen ist das Projekt sofort umsetzungsbereit.</span>
-                    <span data-lang="es">La finalización del proceso LEX DEVELOPMENT está en curso. Una vez obtenida toda la documentación requerida, el proyecto estará listo para su implementación inmediata.</span>
+                <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+                    <span data-lang="en" class="active">Rescue Capital Fund brings together decades of experience in corporate restructuring, legal advisory, and financial management. Our team has successfully guided numerous companies through complex transitions, protecting stakeholder value while building foundations for renewed success.</span>
+                    <span data-lang="pl">Rescue Capital Fund łączy dziesięciolecia doświadczenia w restrukturyzacji korporacyjnej, doradztwie prawnym i zarządzaniu finansami. Nasz zespół z powodzeniem przeprowadził liczne firmy przez złożone transformacje, chroniąc wartość interesariuszy i budując fundamenty pod odnowiony sukces.</span>
+                    <span data-lang="de">Rescue Capital Fund vereint jahrzehntelange Erfahrung in Unternehmensrestrukturierung, Rechtsberatung und Finanzmanagement. Unser Team hat zahlreiche Unternehmen erfolgreich durch komplexe Übergänge geführt und dabei den Stakeholder-Wert geschützt und Grundlagen für erneuten Erfolg geschaffen.</span>
+                    <span data-lang="es">Rescue Capital Fund reúne décadas de experiencia en reestructuración corporativa, asesoría legal y gestión financiera. Nuestro equipo ha guiado exitosamente a numerosas empresas a través de transiciones complejas, protegiendo el valor de los interesados mientras construye bases para un éxito renovado.</span>
                 </p>
-                <span class="legal-status pending">
-                    <span data-lang="en" class="active">Finalizing</span>
-                    <span data-lang="pl">W trakcie finalizacji</span>
-                    <span data-lang="de">In Finalisierung</span>
-                    <span data-lang="es">Finalizando</span>
-                </span>
+                <p style="color: var(--color-text-muted);">
+                    <span data-lang="en" class="active">We operate with discretion, professionalism, and an unwavering commitment to our clients' success. Whether facing insolvency, seeking strategic restructuring, or navigating regulatory challenges, we provide the expertise and support you need.</span>
+                    <span data-lang="pl">Działamy z dyskrecją, profesjonalizmem i niezachwianym zaangażowaniem w sukces naszych klientów. Niezależnie od tego, czy stawiasz czoła niewypłacalności, szukasz strategicznej restrukturyzacji czy nawigujesz wyzwania regulacyjne, zapewniamy potrzebną wiedzę i wsparcie.</span>
+                    <span data-lang="de">Wir arbeiten mit Diskretion, Professionalität und einem unerschütterlichen Engagement für den Erfolg unserer Kunden. Ob bei Insolvenz, strategischer Restrukturierung oder regulatorischen Herausforderungen – wir bieten die Expertise und Unterstützung, die Sie benötigen.</span>
+                    <span data-lang="es">Operamos con discreción, profesionalismo y un compromiso inquebrantable con el éxito de nuestros clientes. Ya sea enfrentando insolvencia, buscando reestructuración estratégica o navegando desafíos regulatorios, proporcionamos la experiencia y el apoyo que necesita.</span>
+                </p>
+
+            </div>
+            <div class="about-visual"></div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="section-header">
+            <p class="section-label">
+                <span data-lang="en" class="active">Our Approach</span>
+                <span data-lang="pl">Nasze Podejście</span>
+                <span data-lang="de">Unser Ansatz</span>
+                <span data-lang="es">Nuestro Enfoque</span>
+            </p>
+            <h2 class="section-title">
+                <span data-lang="en" class="active">A proven <em>methodology</em> for success</span>
+                <span data-lang="pl">Sprawdzona <em>metodologia</em> sukcesu</span>
+                <span data-lang="de">Eine bewährte <em>Methodik</em> für den Erfolg</span>
+                <span data-lang="es">Una <em>metodología</em> probada para el éxito</span>
+            </h2>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>
+                        <span data-lang="en" class="active">Assessment</span>
+                        <span data-lang="pl">Ocena</span>
+                        <span data-lang="de">Bewertung</span>
+                        <span data-lang="es">Evaluación</span>
+                    </h4>
+                    <p>
+                        <span data-lang="en" class="active">Comprehensive analysis of your situation, identifying key challenges and opportunities.</span>
+                        <span data-lang="pl">Kompleksowa analiza Twojej sytuacji, identyfikacja kluczowych wyzwań i możliwości.</span>
+                        <span data-lang="de">Umfassende Analyse Ihrer Situation, Identifizierung wichtiger Herausforderungen und Chancen.</span>
+                        <span data-lang="es">Análisis integral de su situación, identificando desafíos clave y oportunidades.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>
+                        <span data-lang="en" class="active">Strategy</span>
+                        <span data-lang="pl">Strategia</span>
+                        <span data-lang="de">Strategie</span>
+                        <span data-lang="es">Estrategia</span>
+                    </h4>
+                    <p>
+                        <span data-lang="en" class="active">Development of tailored action plans with clear milestones and measurable outcomes.</span>
+                        <span data-lang="pl">Opracowanie dostosowanych planów działania z jasnymi kamieniami milowymi i mierzalnymi rezultatami.</span>
+                        <span data-lang="de">Entwicklung maßgeschneiderter Aktionspläne mit klaren Meilensteinen und messbaren Ergebnissen.</span>
+                        <span data-lang="es">Desarrollo de planes de acción personalizados con hitos claros y resultados medibles.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>
+                        <span data-lang="en" class="active">Execution</span>
+                        <span data-lang="pl">Realizacja</span>
+                        <span data-lang="de">Umsetzung</span>
+                        <span data-lang="es">Ejecución</span>
+                    </h4>
+                    <p>
+                        <span data-lang="en" class="active">Hands-on implementation with our team working alongside yours to drive results.</span>
+                        <span data-lang="pl">Praktyczna realizacja z naszym zespołem pracującym ramię w ramię z Twoim, aby osiągnąć rezultaty.</span>
+                        <span data-lang="de">Praktische Umsetzung mit unserem Team, das an Ihrer Seite arbeitet, um Ergebnisse zu erzielen.</span>
+                        <span data-lang="es">Implementación práctica con nuestro equipo trabajando junto al suyo para lograr resultados.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>
+                        <span data-lang="en" class="active">Stabilization</span>
+                        <span data-lang="pl">Stabilizacja</span>
+                        <span data-lang="de">Stabilisierung</span>
+                        <span data-lang="es">Estabilización</span>
+                    </h4>
+                    <p>
+                        <span data-lang="en" class="active">Ensuring sustainable improvements and building frameworks for long-term success.</span>
+                        <span data-lang="pl">Zapewnienie trwałych usprawnień i budowanie ram długoterminowego sukcesu.</span>
+                        <span data-lang="de">Sicherstellung nachhaltiger Verbesserungen und Aufbau von Rahmenbedingungen für langfristigen Erfolg.</span>
+                        <span data-lang="es">Asegurando mejoras sostenibles y construyendo marcos para el éxito a largo plazo.</span>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section id="contact" class="cta-section">
-        <div class="cta-content">
-            <h2 class="cta-title">
-                <span data-lang="en" class="active">Interested in this <em>opportunity</em>?</span>
-                <span data-lang="pl">Zainteresowany tą <em>okazją</em>?</span>
-                <span data-lang="de">Interessiert an dieser <em>Möglichkeit</em>?</span>
-                <span data-lang="es">¿Interesado en esta <em>oportunidad</em>?</span>
-            </h2>
-            <p class="cta-description">
-                <span data-lang="en" class="active">Contact our investment team to learn more about participation in the Warsaw Riverside Residence project and receive detailed financial projections.</span>
-                <span data-lang="pl">Skontaktuj się z naszym zespołem inwestycyjnym, aby dowiedzieć się więcej o udziale w projekcie Warsaw Riverside Residence i otrzymać szczegółowe prognozy finansowe.</span>
-                <span data-lang="de">Kontaktieren Sie unser Investmentteam, um mehr über die Teilnahme am Warsaw Riverside Residence Projekt zu erfahren und detaillierte Finanzprognosen zu erhalten.</span>
-                <span data-lang="es">Contacte a nuestro equipo de inversión para obtener más información sobre la participación en el proyecto Warsaw Riverside Residence y recibir proyecciones financieras detalladas.</span>
-            </p>
-            <a href="mailto:invest@rescuecapital.com?subject=Warsaw%20Riverside%20Residence%20Inquiry" class="cta-button">
-                <span data-lang="en" class="active">Request Information</span>
-                <span data-lang="pl">Zapytaj o Szczegóły</span>
-                <span data-lang="de">Informationen Anfordern</span>
-                <span data-lang="es">Solicitar Información</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
+    <!-- Partnership Model Section -->
+    <section class="partnership" id="partnership">
+        <div class="partnership-content">
+            <div class="partnership-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                 </svg>
+            </div>
+            <h2 class="section-title" style="text-align: center; margin-bottom: 1.5rem;">
+                <span data-lang="en" class="active">Don't worry about <em>payments</em></span>
+                <span data-lang="pl">Nie martw się <em>płatnościami</em></span>
+                <span data-lang="de">Machen Sie sich keine Sorgen um <em>Zahlungen</em></span>
+                <span data-lang="es">No se preocupe por los <em>pagos</em></span>
+            </h2>
+            <p class="partnership-text">
+                <span data-lang="en" class="active">We invest in you and your success. Our partnership model means we share the risk and the reward. When you win, we win together.</span>
+                <span data-lang="pl">Inwestujemy w Ciebie i Twój sukces. Nasz model partnerski oznacza, że dzielimy ryzyko i nagrodę. Gdy Ty wygrywasz, my wygrywamy razem.</span>
+                <span data-lang="de">Wir investieren in Sie und Ihren Erfolg. Unser Partnerschaftsmodell bedeutet, dass wir Risiko und Belohnung teilen. Wenn Sie gewinnen, gewinnen wir gemeinsam.</span>
+                <span data-lang="es">Invertimos en usted y en su éxito. Nuestro modelo de asociación significa que compartimos el riesgo y la recompensa. Cuando usted gana, ganamos juntos.</span>
+            </p>
+            <div class="partnership-features">
+                <div class="partnership-feature">
+                    <div class="feature-icon">✓</div>
+                    <span data-lang="en" class="active">No upfront fees</span>
+                    <span data-lang="pl">Brak opłat z góry</span>
+                    <span data-lang="de">Keine Vorabgebühren</span>
+                    <span data-lang="es">Sin pagos anticipados</span>
+                </div>
+                <div class="partnership-feature">
+                    <div class="feature-icon">✓</div>
+                    <span data-lang="en" class="active">We invest our resources</span>
+                    <span data-lang="pl">Inwestujemy nasze zasoby</span>
+                    <span data-lang="de">Wir investieren unsere Ressourcen</span>
+                    <span data-lang="es">Invertimos nuestros recursos</span>
+                </div>
+                <div class="partnership-feature">
+                    <div class="feature-icon">✓</div>
+                    <span data-lang="en" class="active">Success-based partnership</span>
+                    <span data-lang="pl">Partnerstwo oparte na sukcesie</span>
+                    <span data-lang="de">Erfolgsbasierte Partnerschaft</span>
+                    <span data-lang="es">Asociación basada en el éxito</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="section-header" style="text-align: center;">
+                <p class="section-label">
+                    <span data-lang="en" class="active">Get in Touch</span>
+                    <span data-lang="pl">Skontaktuj się</span>
+                    <span data-lang="de">Kontaktieren Sie Uns</span>
+                    <span data-lang="es">Contáctenos</span>
+                </p>
+                <h2 class="section-title">
+                    <span data-lang="en" class="active">Ready to discuss your <em>situation</em>?</span>
+                    <span data-lang="pl">Gotowy omówić swoją <em>sytuację</em>?</span>
+                    <span data-lang="de">Bereit, Ihre <em>Situation</em> zu besprechen?</span>
+                    <span data-lang="es">¿Listo para discutir su <em>situación</em>?</span>
+                </h2>
+            </div>
+            <p style="color: var(--color-text-muted);">
+                <span data-lang="en" class="active">Confidential consultations available. Reach out to begin the conversation.</span>
+                <span data-lang="pl">Dostępne poufne konsultacje. Skontaktuj się, aby rozpocząć rozmowę.</span>
+                <span data-lang="de">Vertrauliche Beratungen verfügbar. Nehmen Sie Kontakt auf, um das Gespräch zu beginnen.</span>
+                <span data-lang="es">Consultas confidenciales disponibles. Contáctenos para iniciar la conversación.</span>
+            </p>
+            <a href="/cdn-cgi/l/email-protection#e5868a8b91848691a59780968690808684958c91848983908b81cb868a88" class="contact-email"><span class="__cf_email__" data-cfemail="fb9894958f9a988fbb899e88988e9e989a8b928f9a979d8e959fd5989496">[email&#160;protected]</span></a>
+            <a href="#contact" class="btn btn-primary">
+                <span data-lang="en" class="active">Schedule a Call</span>
+                <span data-lang="pl">Umów Rozmowę</span>
+                <span data-lang="de">Gespräch Vereinbaren</span>
+                <span data-lang="es">Programar Llamada</span>
             </a>
+        </div>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h5>
+                    <span data-lang="en" class="active">Headquarters</span>
+                    <span data-lang="pl">Siedziba</span>
+                    <span data-lang="de">Hauptsitz</span>
+                    <span data-lang="es">Sede Central</span>
+                </h5>
+                <p>Vaduz, Liechtenstein</p>
+            </div>
+            <div class="contact-item">
+                <h5>
+                    <span data-lang="en" class="active">Operations</span>
+                    <span data-lang="pl">Operacje</span>
+                    <span data-lang="de">Geschäftstätigkeit</span>
+                    <span data-lang="es">Operaciones</span>
+                </h5>
+                <p>
+                    <span data-lang="en" class="active">EU & International</span>
+                    <span data-lang="pl">UE i Międzynarodowo</span>
+                    <span data-lang="de">EU & International</span>
+                    <span data-lang="es">UE e Internacional</span>
+                </p>
+            </div>
+            <div class="contact-item">
+                <h5>
+                    <span data-lang="en" class="active">Languages</span>
+                    <span data-lang="pl">Języki</span>
+                    <span data-lang="de">Sprachen</span>
+                    <span data-lang="es">Idiomas</span>
+                </h5>
+                <p>EN / PL / DE / ES</p>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <div class="footer-logo">Rescue<span>Capital</span></div>
-                    <p>
-                        <span data-lang="en" class="active">A leading real estate investment firm specializing in premium residential developments across Central and Eastern Europe.</span>
-                        <span data-lang="pl">Wiodąca firma inwestycyjna w nieruchomości, specjalizująca się w premium inwestycjach mieszkaniowych w Europie Środkowej i Wschodniej.</span>
-                        <span data-lang="de">Eine führende Immobilien-Investmentfirma, spezialisiert auf Premium-Wohnentwicklungen in Mittel- und Osteuropa.</span>
-                        <span data-lang="es">Una firma líder de inversión inmobiliaria especializada en desarrollos residenciales premium en Europa Central y del Este.</span>
-                    </p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h5>
-                            <span data-lang="en" class="active">Company</span>
-                            <span data-lang="pl">Firma</span>
-                            <span data-lang="de">Unternehmen</span>
-                            <span data-lang="es">Empresa</span>
-                        </h5>
-                        <a href="#">
-                            <span data-lang="en" class="active">About Us</span>
-                            <span data-lang="pl">O Nas</span>
-                            <span data-lang="de">Über Uns</span>
-                            <span data-lang="es">Sobre Nosotros</span>
-                        </a>
-                        <a href="#">
-                            <span data-lang="en" class="active">Our Team</span>
-                            <span data-lang="pl">Nasz Zespół</span>
-                            <span data-lang="de">Unser Team</span>
-                            <span data-lang="es">Nuestro Equipo</span>
-                        </a>
-                        <a href="#">
-                            <span data-lang="en" class="active">Careers</span>
-                            <span data-lang="pl">Kariera</span>
-                            <span data-lang="de">Karriere</span>
-                            <span data-lang="es">Carreras</span>
-                        </a>
-                    </div>
-                    <div class="footer-column">
-                        <h5>
-                            <span data-lang="en" class="active">Investments</span>
-                            <span data-lang="pl">Inwestycje</span>
-                            <span data-lang="de">Investitionen</span>
-                            <span data-lang="es">Inversiones</span>
-                        </h5>
-                        <a href="#">
-                            <span data-lang="en" class="active">Current Projects</span>
-                            <span data-lang="pl">Aktualne Projekty</span>
-                            <span data-lang="de">Aktuelle Projekte</span>
-                            <span data-lang="es">Proyectos Actuales</span>
-                        </a>
-                        <a href="#">
-                            <span data-lang="en" class="active">Past Performance</span>
-                            <span data-lang="pl">Poprzednie Wyniki</span>
-                            <span data-lang="de">Bisherige Leistung</span>
-                            <span data-lang="es">Desempeño Anterior</span>
-                        </a>
-                        <a href="#">
-                            <span data-lang="en" class="active">Investor Portal</span>
-                            <span data-lang="pl">Portal Inwestora</span>
-                            <span data-lang="de">Investorenportal</span>
-                            <span data-lang="es">Portal del Inversor</span>
-                        </a>
-                    </div>
-                    <div class="footer-column">
-                        <h5>
-                            <span data-lang="en" class="active">Contact</span>
-                            <span data-lang="pl">Kontakt</span>
-                            <span data-lang="de">Kontakt</span>
-                            <span data-lang="es">Contacto</span>
-                        </h5>
-                        <a href="mailto:invest@rescuecapital.com">invest@rescuecapital.com</a>
-                        <a href="tel:+48221234567">+48 22 123 45 67</a>
-                        <a href="#">Warsaw, Poland</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© 2024 RescueCapital. 
-                    <span data-lang="en" class="active">All rights reserved.</span>
-                    <span data-lang="pl">Wszelkie prawa zastrzeżone.</span>
-                    <span data-lang="de">Alle Rechte vorbehalten.</span>
-                    <span data-lang="es">Todos los derechos reservados.</span>
-                </span>
-                <span>
-                    <a href="#" style="color: var(--text-gray); text-decoration: none;">
-                        <span data-lang="en" class="active">Privacy Policy</span>
-                        <span data-lang="pl">Polityka Prywatności</span>
-                        <span data-lang="de">Datenschutz</span>
-                        <span data-lang="es">Política de Privacidad</span>
-                    </a>
-                    &nbsp;·&nbsp;
-                    <a href="#" style="color: var(--text-gray); text-decoration: none;">
-                        <span data-lang="en" class="active">Terms of Service</span>
-                        <span data-lang="pl">Regulamin</span>
-                        <span data-lang="de">Nutzungsbedingungen</span>
-                        <span data-lang="es">Términos de Servicio</span>
-                    </a>
-                </span>
-            </div>
+        <p>&copy; 2025 Rescue Capital Fund. 
+            <span data-lang="en" class="active">All rights reserved.</span>
+            <span data-lang="pl">Wszelkie prawa zastrzeżone.</span>
+            <span data-lang="de">Alle Rechte vorbehalten.</span>
+            <span data-lang="es">Todos los derechos reservados.</span>
+        </p>
+        <div>
+            <a href="#" style="margin-right: 2rem;">
+                <span data-lang="en" class="active">Privacy Policy</span>
+                <span data-lang="pl">Polityka Prywatności</span>
+                <span data-lang="de">Datenschutz</span>
+                <span data-lang="es">Política de Privacidad</span>
+            </a>
+            <a href="#">
+                <span data-lang="en" class="active">Terms of Service</span>
+                <span data-lang="pl">Regulamin</span>
+                <span data-lang="de">Nutzungsbedingungen</span>
+                <span data-lang="es">Términos de Servicio</span>
+            </a>
         </div>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-        <img id="lightbox-img" src="" alt="Gallery Image">
-    </div>
-
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Language Switcher
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const langElements = document.querySelectorAll('[data-lang]');
+
         function setLanguage(lang) {
-            // Update all lang buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.language === lang) {
-                    btn.classList.add('active');
-                }
+            // Update buttons
+            langBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.langBtn === lang);
             });
 
-            // Update all text elements
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                el.classList.remove('active');
-                if (el.dataset.lang === lang) {
-                    el.classList.add('active');
-                }
+            // Update content
+            langElements.forEach(el => {
+                el.classList.toggle('active', el.dataset.lang === lang);
             });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
 
             // Store preference
-            localStorage.setItem('preferredLanguage', lang);
+            localStorage.setItem('rcf-lang', lang);
         }
 
-        // Initialize language buttons
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => setLanguage(btn.dataset.language));
+        // Initialize language from storage or default to English
+        const savedLang = localStorage.getItem('rcf-lang') || 'en';
+        setLanguage(savedLang);
+
+        // Add click handlers
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn));
         });
 
-        // Load saved language preference
-        const savedLang = localStorage.getItem('preferredLanguage');
-        if (savedLang) {
-            setLanguage(savedLang);
-        }
-
-        // Mobile Menu
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('active');
-            document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('active') ? 'hidden' : '';
-        }
-
-        // Lightbox
-        function openLightbox(imgId) {
-            const img = document.getElementById(imgId);
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Close lightbox with ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-                if (document.getElementById('mobileMenu').classList.contains('active')) {
-                    toggleMobileMenu();
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            }
+            });
         });
 
-        // Close lightbox when clicking outside image
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('lightbox')) {
-                closeLightbox();
-            }
-        });
-
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-
-        function checkReveal() {
-            const windowHeight = window.innerHeight;
-            
-            revealElements.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                const revealPoint = 150;
-                
-                if (elementTop < windowHeight - revealPoint) {
-                    el.classList.add('visible');
-                }
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('mobile-active');
+                mobileMenuBtn.classList.toggle('active');
             });
         }
 
-        window.addEventListener('scroll', checkReveal);
-        window.addEventListener('load', checkReveal);
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('mobile-active');
+                mobileMenuBtn.classList.remove('active');
+            });
+        });
 
         // Navbar background on scroll
+        const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
             if (window.scrollY > 100) {
                 nav.style.background = 'rgba(10, 12, 16, 0.95)';
             } else {
                 nav.style.background = 'rgba(10, 12, 16, 0.85)';
             }
         });
-    </script>
-</body>
-</html>
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate elements on scroll
+        document.querySelectorAll('rd, .
